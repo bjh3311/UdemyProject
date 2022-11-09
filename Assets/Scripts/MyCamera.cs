@@ -18,7 +18,7 @@ public class MyCamera : MonoBehaviour
     private Vector3 targetRotation;
     private Vector3 currentVel;
     
-    void Update()
+    void LateUpdate()//Player가 움직이고 그 후 카메라가 따라가야 하므로 LateUpdate
     {
         Yaxis=Yaxis+Input.GetAxis("Mouse X")*rotSensitive;//마우스 좌우움직임을 입력받아서 카메라의 Y축을 회전시킨다
         Xaxis=Xaxis-Input.GetAxis("Mouse Y")*rotSensitive;//마우스 상하움직임을 입력받아서 카메라의 X축을 회전시킨다
@@ -32,5 +32,6 @@ public class MyCamera : MonoBehaviour
         //SmoothDamp를 통해 부드러운 카메라 회전
 
         transform.position=target.position-transform.forward*dis;
+        //카메라의 위치는 플레이어보다 설정한 값만큼 떨어져있게 계속 변경된다.
     }
 }
