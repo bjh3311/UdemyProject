@@ -629,6 +629,8 @@ MonoBehaviour:
   Yaxis: 0
   Xaxis: 0
   target: {fileID: 297432616}
+  enableMobile: 1
+  touchField: {fileID: 1367702524}
 --- !u!1 &1033716496
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,6 +850,7 @@ GameObject:
   - component: {fileID: 1367702521}
   - component: {fileID: 1367702523}
   - component: {fileID: 1367702522}
+  - component: {fileID: 1367702524}
   m_Layer: 5
   m_Name: TouchPanel
   m_TagString: Untagged
@@ -872,8 +875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 616.05505, y: 0}
-  m_SizeDelta: {x: -1232.111, y: 0}
+  m_AnchoredPosition: {x: 480, y: 0}
+  m_SizeDelta: {x: -960, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1367702522
 MonoBehaviour:
@@ -913,6 +916,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367702520}
   m_CullTransparentMesh: 1
+--- !u!114 &1367702524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367702520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13f4aae6e0e358469c0fb8e9aa2dea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TouchDist: {x: 0, y: 0}
+  PointerOld: {x: 0, y: 0}
+  Pressed: 0
 --- !u!1 &1378660704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1341,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1594979136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1999815858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+    type: 3}
+  m_PrefabInstance: {fileID: 1543583515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4302206775137161071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1332,8 +1362,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1133703184843770997, guid: e9a7597bf49a5b94a9944231be87ee31,
         type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 1999815858}
+    - target: {fileID: 1133703184843770997, guid: e9a7597bf49a5b94a9944231be87ee31,
+        type: 3}
       propertyPath: moveSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133703184843770997, guid: e9a7597bf49a5b94a9944231be87ee31,
+        type: 3}
+      propertyPath: enableMobile
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1133703184843770997, guid: e9a7597bf49a5b94a9944231be87ee31,
         type: 3}
