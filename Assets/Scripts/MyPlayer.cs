@@ -20,9 +20,12 @@ public class MyPlayer : MonoBehaviour
     public FixedJoystick joystick;
 
     private Transform cameraTransform;
+    private Animator anim;
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
+        anim=this.GetComponent<Animator>();
     }
 
     void Update()
@@ -56,6 +59,14 @@ public class MyPlayer : MonoBehaviour
 
         targetSpeed=moveSpeed*inputDir.magnitude;
         currentSpeed=Mathf.SmoothDamp(currentSpeed,targetSpeed,ref speedVelocity,smoothMoveTime);
+        if(inputDir.magnitude>0)
+        {
+            anim.SetBool("running",true);
+        }
+        else if (inputDir.magnitude==0)
+        {
+            anim.SetBool("running",false);
+        }
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
         transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
     }

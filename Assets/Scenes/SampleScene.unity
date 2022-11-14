@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 500938123}
   - component: {fileID: 500938125}
   - component: {fileID: 500938124}
+  - component: {fileID: 500938126}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -372,6 +373,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500938122}
   m_CullTransparentMesh: 0
+--- !u!114 &500938126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500938122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be4160790188b649b259603bb131f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pressed: 0
 --- !u!1001 &570869166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1385,6 +1399,11 @@ PrefabInstance:
       propertyPath: smoothRotationTime
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 4302206775609265321, guid: e9a7597bf49a5b94a9944231be87ee31,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: db2cd08f8f206824b9edc444f2be3261, type: 2}
     - target: {fileID: 4302206775616700105, guid: e9a7597bf49a5b94a9944231be87ee31,
         type: 3}
       propertyPath: m_Name

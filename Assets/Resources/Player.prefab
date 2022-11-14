@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4302206775617053481}
   - component: {fileID: 4302206775609265321}
-  - component: {fileID: 4302206775605922441}
   - component: {fileID: 4302206775605922443}
   - component: {fileID: 3529524842446107040}
   - component: {fileID: 4302206776440417243}
@@ -60,18 +59,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4302206775605922441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302206775616700105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85c5e349cb17df4b85883ea088c2f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4302206775605922443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bf763b4d0e57746aaa66129e6df2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRotationTime: 0
+  smoothMoveTime: 0
+  moveSpeed: 0
+  enableMobile: 0
+  joystick: {fileID: 0}
 --- !u!1 &4302206775616700161
 GameObject:
   m_ObjectHideFlags: 0
