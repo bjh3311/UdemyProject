@@ -22,6 +22,8 @@ public class MyPlayer : MonoBehaviour
     private Transform cameraTransform;
     private Animator anim;
 
+    public Transform rayOrigin;//플레이어의 오른쪽 손
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
@@ -30,6 +32,10 @@ public class MyPlayer : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Fire();
+        }
         Vector2 input =Vector2.zero;
         if(enableMobile)//모바일 환경이라면
         {
@@ -70,4 +76,17 @@ public class MyPlayer : MonoBehaviour
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
         transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
     }
+    public void Fire()
+    {
+        anim.SetTrigger("fire");
+        RaycastHit hit;
+        if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,25f))
+        {
+            Debug.Log(hit.transform.gameObject.name);
+        }//플레이어 위치에서 카메라의 방향으로 25f거리만큼 Ray를 쏜다
+
+        Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*25f,Color.green);
+        //위의 레이캐스트를 눈으로 볼 수 있게 해준다.
+    }
+
 }

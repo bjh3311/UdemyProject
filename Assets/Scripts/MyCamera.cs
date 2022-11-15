@@ -42,7 +42,9 @@ public class MyCamera : MonoBehaviour
         this.transform.eulerAngles=targetRotation;
         //SmoothDamp를 통해 부드러운 카메라 회전
 
-        transform.position=target.position-transform.forward*dis;
-        //카메라의 위치는 플레이어보다 설정한 값만큼 떨어져있게 계속 변경된다.
+        Vector3 temp=target.position-transform.forward*dis;
+        temp.y=1.22f;
+        transform.position=temp;
+        //카메라의 위치는 플레이어보다 설정한 값만큼 떨어져있고 일정한 높이를 유지하게
     }
 }
