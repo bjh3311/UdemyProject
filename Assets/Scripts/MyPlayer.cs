@@ -24,10 +24,17 @@ public class MyPlayer : MonoBehaviour
 
     public Transform rayOrigin;//플레이어의 오른쪽 손
 
+    public GameObject crossHair;
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
         anim=this.GetComponent<Animator>();
+        crossHair=Instantiate(crossHair);
+    }
+    void LateUpdate()
+    {
+        PostionCrossHair();
     }
 
     void Update()
@@ -76,16 +83,33 @@ public class MyPlayer : MonoBehaviour
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
         transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
     }
+    void PostionCrossHair()//크로스헤어를 카메라의 중앙에 둔다
+    {
+        RaycastHit hit;
+        Ray ray=Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f));
+        //ViewportPointToRay는 0~1범위 내에서 정규화 된 좌표에 광선을 쏜다
+        // 0.5f,0.5f니깐 카메라에서 딱 정중앙에 광선을 쏜다
+
+        int layer_mask=LayerMask.GetMask("Default");
+        //Default Layer인 물체만 감지하기 위해
+
+        if(Physics.Raycast(ray,out hit,100f,layer_mask))
+        {
+            Vector3 hitpos=hit.point;//광선이 맞은 위치
+            crossHair.transform.position=hitpos;
+            crossHair.transform.LookAt(Camera.main.transform);//무조건 카메라를 보게
+        }
+    }
     public void Fire()
     {
         anim.SetTrigger("fire");
         RaycastHit hit;
-        if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,25f))
+        if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
             Debug.Log(hit.transform.gameObject.name);
-        }//플레이어 위치에서 카메라의 방향으로 25f거리만큼 Ray를 쏜다
+        }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
 
-        Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*25f,Color.green);
+        Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*100f,Color.green);
         //위의 레이캐스트를 눈으로 볼 수 있게 해준다.
     }
 

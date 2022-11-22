@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &297432615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297432616}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297432616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297432615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.82, z: -0.009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4302206775617053481}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4302206775616700105
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +67,7 @@ Transform:
   - {fileID: 4302206775617053463}
   - {fileID: 4302206775617053461}
   - {fileID: 4302206775617053459}
+  - {fileID: 297432616}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 4302206775616700105}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b6c33e1d6632025468fb37a04e312606, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db2cd08f8f206824b9edc444f2be3261, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -124,11 +156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bf763b4d0e57746aaa66129e6df2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothRotationTime: 0
-  smoothMoveTime: 0
-  moveSpeed: 0
-  enableMobile: 0
+  smoothRotationTime: 0.05
+  smoothMoveTime: 0.1
+  moveSpeed: 3
+  enableMobile: 1
   joystick: {fileID: 0}
+  rayOrigin: {fileID: 4302206775617053531}
+  crossHair: {fileID: 0}
 --- !u!1 &4302206775616700161
 GameObject:
   m_ObjectHideFlags: 0
