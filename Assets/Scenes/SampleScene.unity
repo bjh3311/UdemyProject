@@ -734,7 +734,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1056785054}
   - component: {fileID: 1056785056}
-  - component: {fileID: 1056785057}
   m_Layer: 0
   m_Name: CrossHairCamera
   m_TagString: Untagged
@@ -800,14 +799,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1056785057
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056785053}
-  m_Enabled: 1
 --- !u!1 &1096999752
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +904,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1114670481}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1298429754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4302206775616700105, guid: e9a7597bf49a5b94a9944231be87ee31,
+    type: 3}
+  m_PrefabInstance: {fileID: 4302206775137161071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1298429761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298429754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5503220117a17bd46a12bbd4b2976626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1367702520
 GameObject:
   m_ObjectHideFlags: 0

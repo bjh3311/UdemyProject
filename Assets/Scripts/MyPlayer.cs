@@ -15,6 +15,9 @@ public class MyPlayer : MonoBehaviour
     private float currentSpeed;
     private float targetSpeed;
 
+    [SerializeField]
+    private float JumpForce;
+
     public bool enableMobile=false;
     //모바일 환경인지 아닌지 나타내는 변수, 단순히 개발을 위한 변수이다
     public FixedJoystick joystick;
@@ -25,12 +28,14 @@ public class MyPlayer : MonoBehaviour
     public Transform rayOrigin;//플레이어의 오른쪽 손
 
     public GameObject crossHair;
+    private Rigidbody rb;
 
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
         anim=this.GetComponent<Animator>();
         crossHair=Instantiate(crossHair);
+        rb=this.gameObject.GetComponent<Rigidbody>();
     }
     void LateUpdate()
     {
@@ -41,7 +46,7 @@ public class MyPlayer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Fire();
+            Jump();
         }
         Vector2 input =Vector2.zero;
         if(enableMobile)//모바일 환경이라면
@@ -111,6 +116,12 @@ public class MyPlayer : MonoBehaviour
 
         Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*100f,Color.green);
         //위의 레이캐스트를 눈으로 볼 수 있게 해준다.
+    }
+    public void Jump()
+    {
+        rb.velocity=Vector3.zero;
+        rb.angularVelocity=Vector3.zero;
+        rb.AddForce(Vector3.up*JumpForce,ForceMode.Impulse);
     }
 
 }
