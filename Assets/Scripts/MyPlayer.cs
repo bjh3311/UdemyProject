@@ -34,7 +34,7 @@ public class MyPlayer : MonoBehaviour
     }
     void LateUpdate()
     {
-        PostionCrossHair();
+        PositionCrossHair();
     }
 
     void Update()
@@ -83,7 +83,7 @@ public class MyPlayer : MonoBehaviour
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
         transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
     }
-    void PostionCrossHair()//크로스헤어를 카메라의 중앙에 둔다
+    void PositionCrossHair()//크로스헤어를 카메라의 중앙에 둔다
     {
         RaycastHit hit;
         Ray ray=Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f));
