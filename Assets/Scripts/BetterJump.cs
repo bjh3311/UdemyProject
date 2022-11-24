@@ -5,7 +5,6 @@ using UnityEngine;
 public class BetterJump : MonoBehaviour
 {
 
-    private float fallMultiplayer = 2.5f;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,7 @@ public class BetterJump : MonoBehaviour
     {
         if(rb.velocity.y<0)//떨어지는 와중이라면
         {
-            rb.velocity+=Vector3.up*-9.8F*(fallMultiplayer)*Time.deltaTime;
+            rb.velocity+=Vector3.up*-9.8f*Time.deltaTime;
         }
     }
 }

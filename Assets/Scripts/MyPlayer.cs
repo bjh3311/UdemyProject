@@ -30,6 +30,10 @@ public class MyPlayer : MonoBehaviour
     public GameObject crossHair;
     private Rigidbody rb;
 
+    //sounds
+    public AudioSource shootSound;
+    public AudioSource runSound;
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
@@ -105,20 +109,32 @@ public class MyPlayer : MonoBehaviour
             crossHair.transform.LookAt(Camera.main.transform);//무조건 카메라를 보게
         }
     }
-    public void Fire()
+    public void Fire()//Fire버튼 누르면
     {
-        anim.SetTrigger("fire");
+        anim.SetBool("fire0",true);
+
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
             Debug.Log(hit.transform.gameObject.name);
         }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
-
         Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*100f,Color.green);
         //위의 레이캐스트를 눈으로 볼 수 있게 해준다.
+
+        shootSound.loop=true;
+        shootSound.Play();
+    }
+    public void FireUp()//Fire버튼에서 손을 떼면
+    {
+        anim.SetBool("fire0",false);
+
+        shootSound.loop=false;
+        shootSound.Stop();
+
     }
     public void Jump()
     {
+        anim.SetTrigger("jump");
         rb.velocity=Vector3.zero;
         rb.angularVelocity=Vector3.zero;
         rb.AddForce(Vector3.up*JumpForce,ForceMode.Impulse);
