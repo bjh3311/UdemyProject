@@ -34,6 +34,8 @@ public class MyPlayer : MonoBehaviour
     public AudioSource shootSound;
     public AudioSource runSound;
 
+    private bool fire;
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
@@ -73,6 +75,15 @@ public class MyPlayer : MonoBehaviour
         {
             float rotation=Mathf.Atan2(inputDir.x,inputDir.y)*Mathf.Rad2Deg+cameraTransform.eulerAngles.y;
             transform.eulerAngles=Vector3.up*Mathf.SmoothDampAngle(transform.eulerAngles.y,rotation,ref rotationVelocity,smoothRotationTime);
+        
+            if(!runSound.isPlaying)
+            {
+                runSound.Play();
+            }
+        }
+        else
+        {
+            runSound.Stop();
         }
         //각도를 구해주는 코드, 플레이어가 오른쪽 위 대각선으로 움직일시 그 방향을 바라보게 해준다
         //Mathf.Atan2는 라디안을 return하기에 다시 각도로 바꿔주는 Mathf.Rad2Deg를 곱해준다
@@ -90,7 +101,10 @@ public class MyPlayer : MonoBehaviour
             anim.SetBool("running",false);
         }
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
-        transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
+        if(!fire)
+        {
+            transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
+        }
     }
     void PositionCrossHair()//크로스헤어를 카메라의 중앙에 둔다
     {
@@ -111,7 +125,8 @@ public class MyPlayer : MonoBehaviour
     }
     public void Fire()//Fire버튼 누르면
     {
-        anim.SetBool("fire0",true);
+        fire=true;
+        anim.SetBool("fire",true);
 
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
@@ -126,7 +141,8 @@ public class MyPlayer : MonoBehaviour
     }
     public void FireUp()//Fire버튼에서 손을 떼면
     {
-        anim.SetBool("fire0",false);
+        fire=false;
+        anim.SetBool("fire",false);
 
         shootSound.loop=false;
         shootSound.Stop();
