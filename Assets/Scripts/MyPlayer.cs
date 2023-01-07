@@ -36,12 +36,15 @@ public class MyPlayer : MonoBehaviour
 
     private bool fire;
 
+    private ParticleSystem muzzle;
+
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
         anim=this.GetComponent<Animator>();
         crossHair=Instantiate(crossHair);
         rb=this.gameObject.GetComponent<Rigidbody>();
+        muzzle=GameObject.Find("SciFiRifle(Clone)").transform.GetChild(0).GetComponent<ParticleSystem>();
     }
     void LateUpdate()
     {
@@ -101,6 +104,7 @@ public class MyPlayer : MonoBehaviour
             anim.SetBool("running",false);
         }
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
+
         if(!fire)
         {
             transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
@@ -138,6 +142,8 @@ public class MyPlayer : MonoBehaviour
 
         shootSound.loop=true;
         shootSound.Play();
+
+        muzzle.Play();//총구섬광 플레이
     }
     public void FireUp()//Fire버튼에서 손을 떼면
     {
@@ -147,6 +153,8 @@ public class MyPlayer : MonoBehaviour
         shootSound.loop=false;
         shootSound.Stop();
 
+        muzzle.Stop();//총구섬과 정지
+
     }
     public void Jump()
     {
@@ -155,5 +163,6 @@ public class MyPlayer : MonoBehaviour
         rb.angularVelocity=Vector3.zero;
         rb.AddForce(Vector3.up*JumpForce,ForceMode.Impulse);
     }
+
 
 }
