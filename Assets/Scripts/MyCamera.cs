@@ -7,7 +7,7 @@ public class MyCamera : MonoBehaviour
     public float Yaxis;
     public float Xaxis;
     
-    public Transform target;//Player
+    private Transform target;//Player
 
     private float rotSensitive=0.3f;//카메라 회전 감도
     private float dis=2f;//카메라와 플레이어사이의 거리
@@ -19,7 +19,13 @@ public class MyCamera : MonoBehaviour
     private Vector3 currentVel;
     public bool enableMobile=false;
     //모바일 환경인지 아닌지 나타내는 변수, 단순히 개발을 위한 변수이다
-    public FixedTouchField touchField;
+    private FixedTouchField touchField;
+    private void Awake()
+    {
+        touchField=GameObject.Find("TouchPanel").GetComponent<FixedTouchField>();
+        target=GameObject.FindGameObjectWithTag("Player").transform.GetChild(3);
+        //CameraTarget오브젝트가 Player의 4번째에 붙어있으므로 인덱스상 GetChild(3)이 맞다.
+    }
     
     void LateUpdate()//Player가 움직이고 그 후 카메라가 따라가야 하므로 LateUpdate
     {

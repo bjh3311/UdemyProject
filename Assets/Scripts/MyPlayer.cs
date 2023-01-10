@@ -20,14 +20,14 @@ public class MyPlayer : MonoBehaviour
 
     public bool enableMobile=false;
     //모바일 환경인지 아닌지 나타내는 변수, 단순히 개발을 위한 변수이다
-    public FixedJoystick joystick;
+    private FixedJoystick joystick;
 
     private Transform cameraTransform;
     private Animator anim;
 
     public Transform rayOrigin;//플레이어의 오른쪽 손
 
-    public GameObject crossHair;
+    private GameObject crossHair;
     private Rigidbody rb;
 
     //sounds
@@ -38,6 +38,11 @@ public class MyPlayer : MonoBehaviour
 
     private ParticleSystem muzzle;
 
+    private void Awake() 
+    {
+        joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+        crossHair=Resources.Load("CrosshairCanvas") as GameObject;
+    }//Awake는 prefab이 instance화 된 직후 실행된다. 가장 빨리 실행되는 함수
     private void Start() 
     {
         cameraTransform =Camera.main.transform;
@@ -153,7 +158,7 @@ public class MyPlayer : MonoBehaviour
         shootSound.loop=false;
         shootSound.Stop();
 
-        muzzle.Stop();//총구섬과 정지
+        muzzle.Stop();//총구섬광 정지
 
     }
     public void Jump()
