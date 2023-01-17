@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+
+using Photon.Pun;
+
+using Photon;
 
 public class MyPlayer : MonoBehaviour
 {
@@ -38,26 +43,42 @@ public class MyPlayer : MonoBehaviour
 
     private ParticleSystem muzzle;
 
+    private PhotonView PV;
+
     private void Awake() 
     {
-        joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
-        crossHair=Resources.Load("CrosshairCanvas") as GameObject;
+        if(PV.IsMine)
+        {
+            joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+            crossHair=Resources.Load("CrosshairCanvas") as GameObject;
+        }
+        
     }//Awake는 prefab이 instance화 된 직후 실행된다. 가장 빨리 실행되는 함수
     private void Start() 
     {
-        cameraTransform =Camera.main.transform;
-        anim=this.GetComponent<Animator>();
-        crossHair=Instantiate(crossHair);
-        rb=this.gameObject.GetComponent<Rigidbody>();
-        muzzle=GameObject.Find("SciFiRifle(Clone)").transform.GetChild(0).GetComponent<ParticleSystem>();
+        if(PV.IsMine)
+        {
+            cameraTransform =Camera.main.transform;
+            anim=this.GetComponent<Animator>();
+            crossHair=Instantiate(crossHair);
+            rb=this.gameObject.GetComponent<Rigidbody>();
+            muzzle=GameObject.Find("SciFiRifle(Clone)").transform.GetChild(0).GetComponent<ParticleSystem>();
+        }
     }
     void LateUpdate()
     {
-        PositionCrossHair();
+        if(PV.IsMine)
+        {
+            PositionCrossHair();
+        }
     }
 
     void Update()
     {
+        if(!PV.IsMine)
+        {
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Jump();

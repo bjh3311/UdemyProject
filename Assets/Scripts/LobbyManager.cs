@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -12,17 +14,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
    public GameObject connectUI;
 
    [Header("---UI Text---")]
-   public Text statusText;
-   public Text connectingText;
+   public TMP_Text statusText;
+   public TMP_Text connectingText;
 
     [Header("---UI InputFields---")]
-    public InputField createRoom;
-    public InputField joinRoom;
+    public TMP_InputField createRoom;
+    public TMP_InputField joinRoom;
 
     private void Awake() 
     {
         PhotonNetwork.ConnectUsingSettings();
     }//Connect to PhotonNetwork based on UsingSetting
+    //You can check your UsingSetting on your asset folder
+    
     public override void OnConnectedToMaster()
     {
         connectingText.text="Joining Lobby...";
@@ -32,11 +36,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     {
         connectUI.SetActive(false);
         roomUI.SetActive(true);
+        statusText.text="Joined To Lobby...";
     }// Called on entering a lobby on the Master Server. The actual room-list updates will call OnRoomListUpdate.
     
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel(1);
+        //Loading the index 1 scene
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -44,20 +50,40 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         connectUI.SetActive(true);
         roomUI.SetActive(false);
         connectingText.text="Disconnected..."+cause.ToString();
+    }//If fail to connect...
+    
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        int roomName=Random.Range(0,10000);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers=4;
+        PhotonNetwork.CreateRoom(roomName.ToString(),roomOptions,TypedLobby.Default,null);//take above room options
+    }//If this function is executed because of failure of Onclick_PlayNow()
+    //Creating room with random number and join it.
 
-    }
+
     #region ButtonClicks
-    public void CreateBtn()
+    public void OnClick_CreateBtn()
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers=4;
         PhotonNetwork.CreateRoom(createRoom.text,roomOptions,TypedLobby.Default,null);//take above room options
     }
-    public void JoinBtn()
+    public void OnClick_JoinBtn()
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers=4;
         PhotonNetwork.JoinOrCreateRoom(joinRoom.text,roomOptions,TypedLobby.Default,null);
     }
+    public void OnClick_PlayNow()
+    {
+        PhotonNetwork.JoinRandomRoom();
+        statusText.text="Creating Room...Please Wait...";
+        //Joining Random room if it is available
+        //if it is not available and failed to connect, OnJoinRandomFailed function will be executed
+    }//function for Button PlayNow
+
     #endregion
+
+
 }

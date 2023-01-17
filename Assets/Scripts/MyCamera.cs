@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MyCamera : MonoBehaviour
 {
+    public PhotonView playerPhotonView;
+
     public float Yaxis;
     public float Xaxis;
     
@@ -22,9 +25,16 @@ public class MyCamera : MonoBehaviour
     private FixedTouchField touchField;
     private void Awake()
     {
-        touchField=GameObject.Find("TouchPanel").GetComponent<FixedTouchField>();
-        target=GameObject.FindGameObjectWithTag("Player").transform.GetChild(3);
-        //CameraTarget오브젝트가 Player의 4번째에 붙어있으므로 인덱스상 GetChild(3)이 맞다.
+        if(playerPhotonView.IsMine)
+        {   
+            touchField=GameObject.Find("TouchPanel").GetComponent<FixedTouchField>();
+            target=GameObject.FindGameObjectWithTag("Player").transform.GetChild(3);
+            //CameraTarget오브젝트가 Player의 4번째에 붙어있으므로 인덱스상 GetChild(3)이 맞다.
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }//There are many cameras if you start game.So turn all of them off except your camera.
     }
     
     void LateUpdate()//Player가 움직이고 그 후 카메라가 따라가야 하므로 LateUpdate
