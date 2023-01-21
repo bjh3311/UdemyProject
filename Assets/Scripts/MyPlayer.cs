@@ -66,6 +66,10 @@ public class MyPlayer : MonoBehaviourPun
             rb=this.gameObject.GetComponent<Rigidbody>();
             muzzle=GameObject.Find("SciFiRifle(Clone)").transform.GetChild(0).GetComponent<ParticleSystem>();
         }
+        else
+        {
+            this.gameObject.GetComponent<BetterJump>().enabled=false;
+        }
     }
     void LateUpdate()
     {
@@ -120,7 +124,11 @@ public class MyPlayer : MonoBehaviourPun
         //Mathf.Atan2는 라디안을 return하기에 다시 각도로 바꿔주는 Mathf.Rad2Deg를 곱해준다
         //Vector.up은 y axis를 의미한다
         //SmoothDampAngle을 이용해서 부드럽게 플레이어의 각도를 바꿔준다.
-
+        if (fire)
+        {
+            float rotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            transform.eulerAngles = Vector3.up * rotation;
+        }//Player must change its rotation when it is shooting a gun.
         targetSpeed=moveSpeed*inputDir.magnitude;
         currentSpeed=Mathf.SmoothDamp(currentSpeed,targetSpeed,ref speedVelocity,smoothMoveTime);
         if(inputDir.magnitude>0)
@@ -133,7 +141,7 @@ public class MyPlayer : MonoBehaviourPun
         }
         //현재스피드에서 타겟스피드까지 smoothMoveTime 동안 변한다
 
-        if(!fire)
+        if(!fire)//Player can't move while shooting a gun.
         {
             transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
         }
