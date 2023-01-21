@@ -7,7 +7,7 @@ using Photon.Pun;
 
 using Photon;
 
-public class MyPlayer : MonoBehaviour
+public class MyPlayer : MonoBehaviourPun
 {
     [SerializeField]//인스펙터에서만 참조 가능하게
     private float smoothRotationTime;//target 각도로 회전하는데 걸리는 시간
@@ -45,8 +45,10 @@ public class MyPlayer : MonoBehaviour
 
     private PhotonView PV;
 
+
     private void Awake() 
     {
+        PV=this.gameObject.GetPhotonView();
         if(PV.IsMine)
         {
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();

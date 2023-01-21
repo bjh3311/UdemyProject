@@ -28,7 +28,7 @@ public class MyCamera : MonoBehaviour
         if(playerPhotonView.IsMine)
         {   
             touchField=GameObject.Find("TouchPanel").GetComponent<FixedTouchField>();
-            target=GameObject.FindGameObjectWithTag("Player").transform.GetChild(3);
+            target=GetLocalPlayer().transform.GetChild(3);
             //CameraTarget오브젝트가 Player의 4번째에 붙어있으므로 인덱스상 GetChild(3)이 맞다.
         }
         else
@@ -63,4 +63,17 @@ public class MyCamera : MonoBehaviour
         transform.position=_offset;
         //카메라의 위치는 플레이어보다 설정한 값만큼 떨어져있게
     }
+    GameObject GetLocalPlayer()
+    {
+        GameObject[] players =GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject temp in players)
+        {
+            if(temp.GetComponent<PhotonView>().IsMine)
+            {
+                return temp;
+            }
+        }
+        return null;
+    }
+
 }
