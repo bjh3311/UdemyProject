@@ -46,20 +46,13 @@ public class MyPlayer : MonoBehaviourPun
     private PhotonView PV;
 
 
-    private void Awake() 
+    private void Start() 
     {
         PV=this.gameObject.GetPhotonView();
         if(PV.IsMine)
         {
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
             crossHair=Resources.Load("CrosshairCanvas") as GameObject;
-        }
-        
-    }//Awake는 prefab이 instance화 된 직후 실행된다. 가장 빨리 실행되는 함수
-    private void Start() 
-    {
-        if(PV.IsMine)
-        {
             cameraTransform =Camera.main.transform;
             anim=this.GetComponent<Animator>();
             crossHair=Instantiate(crossHair);
