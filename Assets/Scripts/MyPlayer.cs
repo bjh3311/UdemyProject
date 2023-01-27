@@ -43,7 +43,7 @@ public class MyPlayer : MonoBehaviourPun
 
     private ParticleSystem muzzle;
 
-    private PhotonView PV;
+    public PhotonView PV;
 
 
     private void Start() 
@@ -51,6 +51,7 @@ public class MyPlayer : MonoBehaviourPun
         PV=this.gameObject.GetPhotonView();
         if(PV.IsMine)
         {
+            Debug.Log("내꺼 지롱");
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
             crossHair=Resources.Load("CrosshairCanvas") as GameObject;
             cameraTransform =Camera.main.transform;
