@@ -1,30 +1,21 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FixedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class FixedButton : MonoBehaviour,IPointerClickHandler
 {
-    [HideInInspector]
-    public bool Pressed;
+    public MyPlayer player;//Reference MyPlayer
 
-    // Use this for initialization
-    void Start()
+    public void SetPlayer(MyPlayer _player)
     {
-
+        player = _player;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-
+        player.Jump();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Pressed = true;
-    }
+  
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        Pressed = false;
-    }
+   
 }

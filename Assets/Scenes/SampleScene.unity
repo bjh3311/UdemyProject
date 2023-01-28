@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 348113354}
   - component: {fileID: 348113353}
   - component: {fileID: 348113352}
+  - component: {fileID: 348113355}
   m_Layer: 5
   m_Name: Jump
   m_TagString: Untagged
@@ -347,19 +348,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 348113353}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MyPlayer, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &348113353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +387,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348113350}
   m_CullTransparentMesh: 1
+--- !u!114 &348113355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348113350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be4160790188b649b259603bb131f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pressed: 0
 --- !u!1001 &570869166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,7 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78438e35d4c68c047b478552c199b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPhotonView: {fileID: 0}
   Yaxis: 0
   Xaxis: 0
   enableMobile: 1
@@ -1525,8 +1526,8 @@ GameObject:
   - component: {fileID: 2082926533}
   - component: {fileID: 2082926536}
   - component: {fileID: 2082926535}
-  - component: {fileID: 2082926537}
   - component: {fileID: 2082926538}
+  - component: {fileID: 2082926539}
   m_Layer: 5
   m_Name: Shoot
   m_TagString: Untagged
@@ -1592,51 +1593,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082926532}
   m_CullTransparentMesh: 1
---- !u!114 &2082926537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082926532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MyPlayer, Assembly-CSharp
-          m_MethodName: FireUp
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MyPlayer, Assembly-CSharp
-          m_MethodName: Fire
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &2082926538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,3 +1637,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2082926539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082926532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c61791dd47454441b843049de423824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

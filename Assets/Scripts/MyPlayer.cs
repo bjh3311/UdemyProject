@@ -26,6 +26,8 @@ public class MyPlayer : MonoBehaviourPun
     public bool enableMobile=false;
     //모바일 환경인지 아닌지 나타내는 변수, 단순히 개발을 위한 변수이다
     private FixedJoystick joystick;
+    private FireBtn firebtn;
+    private FixedButton jump;
 
     private Transform cameraTransform;
     private Animator anim;
@@ -51,8 +53,10 @@ public class MyPlayer : MonoBehaviourPun
         PV=this.gameObject.GetPhotonView();
         if(PV.IsMine)
         {
-            Debug.Log("내꺼 지롱");
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+            GameObject.Find("Shoot").GetComponent<FireBtn>().SetPlayer(this);
+            GameObject.Find("Jump").GetComponent<FixedButton>().SetPlayer(this);
+
             crossHair=Resources.Load("CrosshairCanvas") as GameObject;
             cameraTransform =Camera.main.transform;
             anim=this.GetComponent<Animator>();
