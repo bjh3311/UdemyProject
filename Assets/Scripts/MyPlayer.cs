@@ -7,7 +7,7 @@ using Photon.Pun;
 
 using Photon;
 
-public class MyPlayer : MonoBehaviourPun
+public class MyPlayer : MonoBehaviourPun , IPunObservable
 {
     [SerializeField]//인스펙터에서만 참조 가능하게
     private float smoothRotationTime;//target 각도로 회전하는데 걸리는 시간
@@ -56,13 +56,12 @@ public class MyPlayer : MonoBehaviourPun
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
             GameObject.Find("Shoot").GetComponent<FireBtn>().SetPlayer(this);
             GameObject.Find("Jump").GetComponent<FixedButton>().SetPlayer(this);
-
+            muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>();
             crossHair=Resources.Load("CrosshairCanvas") as GameObject;
             cameraTransform =Camera.main.transform;
             anim=this.GetComponent<Animator>();
             crossHair=Instantiate(crossHair);
             rb=this.gameObject.GetComponent<Rigidbody>();
-            muzzle=GameObject.Find("SciFiRifle(Clone)").transform.GetChild(0).GetComponent<ParticleSystem>();
         }
         else
         {
@@ -182,11 +181,17 @@ public class MyPlayer : MonoBehaviourPun
     public void FireUp()//Fire버튼에서 손을 떼면
     {
         fire=false;
-        anim.SetBool("fire",false);
-
+        if(photonView.IsMine)
+        {
+            anim.SetBool("fire",false);
+        }
         shootSound.loop=false;
         shootSound.Stop();
 
+        if(muzzle==null)
+        {
+            muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>();
+        }
         muzzle.Stop();//총구섬광 정지
 
     }
@@ -196,6 +201,34 @@ public class MyPlayer : MonoBehaviourPun
         rb.velocity=Vector3.zero;
         rb.angularVelocity=Vector3.zero;
         rb.AddForce(Vector3.up*JumpForce,ForceMode.Impulse);
+    }
+
+    public void MuzzleFlash()
+    {
+        if(muzzle==null)
+        {
+            muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>();
+        }
+        muzzle.Play();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)//in the case of my local player...
+        {
+            stream.SendNext(fire);
+        }
+        else
+        {
+            if((bool)stream.ReceiveNext())
+            {
+                MuzzleFlash();
+            }
+            else
+            {
+                FireUp();
+            }
+        }
     }
 
 

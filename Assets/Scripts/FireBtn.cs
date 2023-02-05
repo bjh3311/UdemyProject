@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FireBtn : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
-    public MyPlayer player;//myplayer스크립트 참조
+    public MyPlayer player;//Reference MyPlayer
 
     public void SetPlayer(MyPlayer _player)
     {
