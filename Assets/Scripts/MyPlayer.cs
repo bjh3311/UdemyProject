@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 using Photon.Pun;
 
@@ -46,6 +47,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     private ParticleSystem muzzle;
 
     public PhotonView PV;
+
+    //health
+    public Image fillImage;
+    public float playerHealth = 1f;
 
 
     private void Start() 
@@ -210,6 +215,12 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>();
         }
         muzzle.Play();
+    }
+
+    [PunRPC]
+    public void GetDamage(float amount)
+    {
+        playerHealth=playerHealth-amount;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
