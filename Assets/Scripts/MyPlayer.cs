@@ -52,6 +52,8 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public Image fillImage;
     public float playerHealth = 1f;
 
+    public float damage=0.01f;
+
 
     private void Start() 
     {
@@ -173,7 +175,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
-            Debug.Log(hit.transform.gameObject.name);
+            if(!hit.transform.GetComponent<PhotonView>().IsMine&&hit.transform.tag=="Player" )//Not hitting myself
+            {
+                hit.transform.GetComponent<PhotonView>().RPC("GetDamage",RpcTarget.AllBuffered,damage);
+            }
         }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
         Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*100f,Color.green);
         //위의 레이캐스트를 눈으로 볼 수 있게 해준다.

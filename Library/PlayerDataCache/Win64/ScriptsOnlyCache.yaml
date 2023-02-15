@@ -40,6 +40,8 @@ ScriptsOnlyBuild:
     Unity.AdaptivePerformance.dll:
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceGeneralSettings
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceManagerSettings
+    Unity.Mobile.AndroidLogcat.Editor.dll:
+    - Unity.Android.Logcat.AndroidLogcatManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -1801,7 +1803,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: 2a3f37f56746abbffb474a594f1ae2f2
+      Hash: 234d039f331e46e636cf3ee2ab42e07e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MyPlayer
