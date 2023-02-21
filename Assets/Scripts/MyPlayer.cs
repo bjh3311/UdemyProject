@@ -175,7 +175,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
-            if(!hit.transform.GetComponent<PhotonView>().IsMine&&hit.transform.tag=="Player" )//Not hitting myself
+            if(hit.transform.tag=="Player"&&!hit.transform.GetComponent<PhotonView>().IsMine)//Not hitting myself
             {
                 hit.transform.GetComponent<PhotonView>().RPC("GetDamage",RpcTarget.AllBuffered,damage);
             }
