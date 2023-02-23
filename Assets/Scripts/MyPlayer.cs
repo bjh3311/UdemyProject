@@ -175,8 +175,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
+            Debug.Log(hit.transform.tag);
             if(hit.transform.tag=="Player"&&!hit.transform.GetComponent<PhotonView>().IsMine)//Not hitting myself
             {
+                Debug.Log("총에 맞았다");
                 hit.transform.GetComponent<PhotonView>().RPC("GetDamage",RpcTarget.AllBuffered,damage);
             }
         }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
