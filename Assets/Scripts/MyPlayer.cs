@@ -36,6 +36,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public Transform rayOrigin;//플레이어의 오른쪽 손
 
     private GameObject crossHair;
+    private Vector3 crossHairVel;
     private Rigidbody rb;
 
     //sounds
@@ -162,8 +163,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
 
         if(Physics.Raycast(ray,out hit,100f,layer_mask))
         {
-            Vector3 hitpos=hit.point;//광선이 맞은 위치
-            crossHair.transform.position=hitpos;
+            crossHair.transform.position=ray.GetPoint(10);
             crossHair.transform.LookAt(Camera.main.transform);//무조건 카메라를 보게
         }
     }
@@ -175,15 +175,11 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         RaycastHit hit;
         if(Physics.Raycast(rayOrigin.position,Camera.main.transform.forward,out hit,100f))
         {
-            Debug.Log(hit.transform.tag);
             if(hit.transform.tag=="Player"&&!hit.transform.GetComponent<PhotonView>().IsMine)//Not hitting myself
             {
-                Debug.Log("총에 맞았다");
                 hit.transform.GetComponent<PhotonView>().RPC("GetDamage",RpcTarget.AllBuffered,damage);
             }
         }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
-        Debug.DrawRay(rayOrigin.position,Camera.main.transform.forward*100f,Color.green);
-        //위의 레이캐스트를 눈으로 볼 수 있게 해준다.
 
         shootSound.loop=true;
         shootSound.Play();
