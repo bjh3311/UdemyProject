@@ -50,6 +50,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public PhotonView PV;
 
     //health
+    public GameObject healthBar;
     public Image fillImage;
     public float playerHealth = 1f;
 
@@ -70,6 +71,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             anim=this.GetComponent<Animator>();
             crossHair=Instantiate(crossHair);
             rb=this.gameObject.GetComponent<Rigidbody>();
+            healthBar.SetActive(true);
         }
         else
         {
@@ -182,9 +184,11 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         }//플레이어 위치에서 카메라의 방향으로 100f거리만큼 Ray를 쏜다
 
         shootSound.loop=true;
-        shootSound.Play();
-
-        muzzle.Play();//총구섬광 플레이
+        if(!shootSound.isPlaying)
+        {
+            shootSound.Play();
+            muzzle.Play();//총구섬광 플레이
+        }
     }
     public void FireUp()//Fire버튼에서 손을 떼면
     {
@@ -224,6 +228,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public void GetDamage(float amount)
     {
         playerHealth=playerHealth-amount;
+        if(photonView.IsMine)
+        {
+            fillImage.fillAmount=playerHealth;
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
