@@ -23,9 +23,6 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
 
     [SerializeField]
     private float JumpForce;
-
-    public bool enableMobile=false;
-    //모바일 환경인지 아닌지 나타내는 변수, 단순히 개발을 위한 변수이다
     private FixedJoystick joystick;
     private FireBtn firebtn;
     private FixedButton jump;
@@ -92,19 +89,9 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
         Vector2 input =Vector2.zero;
-        if(enableMobile)//모바일 환경이라면
-        {
-            input=new Vector2(joystick.input.x,joystick.input.y);
-        }
-        else//pc환경이라면 
-        {
-            input=new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
-        }
+        input=new Vector2(joystick.input.x,joystick.input.y);
+
         //GetAxisRaw("Horizontal") :오른쪽 방향키누르면 1을 반환, 아무것도 안누르면 0, 왼쪽방향키는 -1 반환
         //GetAxis("Horizontal"):-1과 1 사이의 실수값을 반환
         //Vertical은 위쪽방향키 누를시 1,아무것도 안누르면 0, 아래쪽방향키는 -1 반환

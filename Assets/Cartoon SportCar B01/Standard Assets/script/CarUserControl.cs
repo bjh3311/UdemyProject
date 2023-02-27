@@ -12,7 +12,10 @@ namespace UnityStandardAssets.Vehicles.Car
         private int input;
         private CarController m_Car; // the car controller we want to use
 
+        //ForwardButton forward;
+        //BackwardButton backward;
 
+        public GameObject carUI;
         private void Awake()
         {
             // get the car controller
@@ -20,8 +23,12 @@ namespace UnityStandardAssets.Vehicles.Car
         }
         private void Start() 
         {
+            //forward=GameObject.Find("Forward").GetComponent<ForwardButton>();
+            //backward=GameObject.Find("Backward").GetComponent<BackwardButton>();
+            
             ForwardButton.instance.SetPlayer(this.gameObject);
             BackwardButton.instance.SetPlayer(this.gameObject);
+            carUI.SetActive(false);
         }
         private void FixedUpdate()
         {
@@ -40,7 +47,7 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             m_Car.Move(h, input, input, handbrake);
             #else
-            m_Car.Move(h, v, v, 0f);
+            m_Car.Move(h, input, input, 0f);
             #endif
         }
         public void Forward()
