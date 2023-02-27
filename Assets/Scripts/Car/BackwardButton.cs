@@ -1,13 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityStandardAssets.Vehicles.Car;
 
-public class Backward : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
+public class BackwardButton : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
 {
-    public static Backward instance=null;
-
+    public static BackwardButton instance=null;
     CarUserControl car;
     void Awake() 
     {

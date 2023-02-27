@@ -36,11 +36,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Plugins\SimpleInput\Editor\MouseButtonInputDrawer.cs" />
      <Compile Include="Assets\Plugins\SimpleInput\Editor\KeyInputDrawer.cs" />
      <Compile Include="Assets\Plugins\SimpleInput\Editor\BaseInputDrawer.cs" />
      <Compile Include="Assets\Plugins\SimpleInput\Editor\ButtonInputDrawer.cs" />
      <Compile Include="Assets\Plugins\SimpleInput\Editor\AxisInputDrawer.cs" />
-     <Compile Include="Assets\Plugins\SimpleInput\Editor\MouseButtonInputDrawer.cs" />
      <None Include="Assets\Plugins\SimpleInput\Editor\SimpleInput.Editor.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.12f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -1,13 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityStandardAssets.Vehicles.Car;
 
-public class Forward : MonoBehaviour ,IPointerDownHandler, IPointerUpHandler
+public class ForwardButton : MonoBehaviour ,IPointerDownHandler, IPointerUpHandler
 {
-    // Start is called before the first frame update
-    public static Forward instance=null;
+    public static ForwardButton instance=null;
 
     CarUserControl car;
     void Awake() 

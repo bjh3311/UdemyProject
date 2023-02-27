@@ -1,18 +1,18 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
     [RequireComponent(typeof (CarController))]
-    public class CarUserControl : MonoBehaviour
+    public class CarUserControl : MonoBehaviour 
     {
         private int input;
         private CarController m_Car; // the car controller we want to use
 
 
-        Forward forward;
-        Backward backward;
         private void Awake()
         {
             // get the car controller
@@ -20,14 +20,9 @@ namespace UnityStandardAssets.Vehicles.Car
         }
         private void Start() 
         {
-            forward=GameObject.Find("Forward").GetComponent<Forward>();
-            backward=GameObject.Find("Backward").GetComponent<Backward>();
-
-            Forward.instance.SetPlayer(this.gameObject);
-            Backward.instance.SetPlayer(this.gameObject);
-            
+            ForwardButton.instance.SetPlayer(this.gameObject);
+            BackwardButton.instance.SetPlayer(this.gameObject);
         }
-
         private void FixedUpdate()
         {
             // pass the input to the car!
