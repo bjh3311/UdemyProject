@@ -281,6 +281,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603967637357477268, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7830180196191690266, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
         type: 3}
       propertyPath: carUI
@@ -348,12 +365,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
---- !u!1 &328476185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7830180196201315148, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
-    type: 3}
-  m_PrefabInstance: {fileID: 328476184}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &340219223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -870,19 +881,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 328476184}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1004569724
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!114 &1004569726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
+    type: 3}
+  m_PrefabInstance: {fileID: 328476184}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328476185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157ea48466878b341b55b27e2c7abb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1033716496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,7 +2112,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1813002947}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1004569726}
+        m_TargetAssemblyTypeName: CarManager, Assembly-CSharp
+        m_MethodName: OnClick_CarButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1813002947
 MonoBehaviour:
   m_ObjectHideFlags: 0

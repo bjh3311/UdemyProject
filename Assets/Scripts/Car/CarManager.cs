@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -69,11 +70,12 @@ public class CarManager : MonoBehaviour , IPunOwnershipCallbacks
     void IPunOwnershipCallbacks.OnOwnershipRequest(Photon.Pun.PhotonView targetView, Photon.Realtime.Player requestingPlayer)
     {
 
-    }
+        throw new System.NotImplementedException();
+    }//소유권 요청
     void IPunOwnershipCallbacks.OnOwnershipTransfered(Photon.Pun.PhotonView targetView, Photon.Realtime.Player previousOwner)
     {
-
-    }
+        throw new System.NotImplementedException();
+    }//위 소유권 요청이 잘 실행되었으면 이 함수도 실행된다
     void IPunOwnershipCallbacks.OnOwnershipTransferFailed(Photon.Pun.PhotonView targetView, Photon.Realtime.Player senderOfFailedRequest)
     {
         

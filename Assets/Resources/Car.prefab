@@ -6567,6 +6567,8 @@ GameObject:
   - component: {fileID: 7830180196191690266}
   - component: {fileID: 7830180196191696646}
   - component: {fileID: 2007026640}
+  - component: {fileID: 1004569724}
+  - component: {fileID: 4603967637357477268}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -6700,6 +6702,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ea48466878b341b55b27e2c7abb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CarInCanvas: {fileID: 0}
+  playerCanvas: {fileID: 0}
+  CarCanvas: {fileID: 0}
+  carCamera: {fileID: 0}
+  iscarFree: 1
+--- !u!65 &1004569724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830180196201315148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4603967637357477268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830180196201315148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7830180196201318338
 GameObject:
   m_ObjectHideFlags: 0
