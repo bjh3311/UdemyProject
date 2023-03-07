@@ -281,18 +281,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
-      propertyPath: m_Size.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004569724, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
-      propertyPath: m_Size.z
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: CarCanvas
+      value: 
+      objectReference: {fileID: 1321049223}
+    - target: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: carCamera
+      value: 
+      objectReference: {fileID: 1811585830}
+    - target: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: CarInCanvas
+      value: 
+      objectReference: {fileID: 1067557598}
+    - target: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: playerCanvas
+      value: 
+      objectReference: {fileID: 1033716496}
     - target: {fileID: 4603967637357477268, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
         type: 3}
       propertyPath: sceneViewId
@@ -746,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1091,7 +1095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1067557599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,7 +2020,7 @@ PrefabInstance:
     - target: {fileID: 7453148129031885349, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7453148129070466162, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
         type: 3}
@@ -2030,6 +2034,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4ce3bf5e202dde468cd185ae3ac9dbd, type: 3}
+--- !u!1 &1811585830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453148129031885349, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1811585829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813002944
 GameObject:
   m_ObjectHideFlags: 0
