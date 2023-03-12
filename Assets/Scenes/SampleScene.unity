@@ -302,6 +302,16 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4603967637357477268, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
+        type: 3}
+      propertyPath: OwnershipTransfer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603967637357477268, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
+        type: 3}
+      propertyPath: ObservedComponentsFoldoutOpen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7830180196191690266, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
         type: 3}
       propertyPath: carUI
@@ -1155,7 +1165,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1067557602
 RectTransform:
@@ -1952,11 +1962,6 @@ PrefabInstance:
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 1004569723}
-    - target: {fileID: 7453148128566998904, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7453148129031885347, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
         type: 3}
       propertyPath: m_RootOrder
@@ -2017,21 +2022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cameras
       objectReference: {fileID: 0}
-    - target: {fileID: 7453148129031885349, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7453148129070466162, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
         type: 3}
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 1004569723}
-    - target: {fileID: 7453148129070466165, guid: c4ce3bf5e202dde468cd185ae3ac9dbd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4ce3bf5e202dde468cd185ae3ac9dbd, type: 3}
 --- !u!1 &1811585830 stripped

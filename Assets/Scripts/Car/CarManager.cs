@@ -5,7 +5,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
+public class CarManager : MonoBehaviourPun 
 {
     public GameObject CarInCanvas;
     [Space]
@@ -75,31 +75,5 @@ public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
     void SetCarState(bool status)
     {
         iscarFree=status;
-    }
-    void IPunOwnershipCallbacks.OnOwnershipRequest(Photon.Pun.PhotonView targetView, Photon.Realtime.Player requestingPlayer)
-    {
-        // OnOwnershipRequest gets called on every script that implements it every time a request for ownership transfer of any object occurs
-        // So, firstly, only continue if this callback is getting called because *this* object is being transferred
-        if(targetView != base.photonView)
-        {
-            return;
-        }
-        if(iscarFree)//자동차가 자유롭다면
-        {
-            base.photonView.TransferOwnership(requestingPlayer);
-            //이 자동차의 소유권을 요청한 플레이어에게 넘긴다
-        }
-    }//소유권 요청
-    void IPunOwnershipCallbacks.OnOwnershipTransfered(Photon.Pun.PhotonView targetView, Photon.Realtime.Player previousOwner)
-    {
-        if(targetView != base.photonView)
-        {
-            return;
-        }
-        throw new System.NotImplementedException();
-    }//위 소유권 요청이 잘 실행되었으면 이 함수도 실행된다
-    void IPunOwnershipCallbacks.OnOwnershipTransferFailed(Photon.Pun.PhotonView targetView, Photon.Realtime.Player senderOfFailedRequest)
-    {
-        
     }
 }
