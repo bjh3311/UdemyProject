@@ -19,7 +19,7 @@ public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
 
     private void OnTriggerEnter(Collider collision)//자동차 주변 범위 안에 들어왔으면
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player")&&collision.GetComponent<PhotonView>().IsMine)
         {
             if(iscarFree)//자동차가 아무도 안 타 있는 상태라면
             {
@@ -29,7 +29,7 @@ public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
     }
     private void OnTriggerExit(Collider collision) //일정범위 밖으로 나가면 자동차 타고 내리는 버튼 비활성화
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player")&&collision.GetComponent<PhotonView>().IsMine)
         {
             CarInCanvas.SetActive(false);
         }
@@ -58,7 +58,8 @@ public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
         CarCanvas.SetActive(true);//자동차 UI켜기
         player.transform.SetParent(this.transform);//플레이어를 자동차의 하위 하이라키로 옮긴다
         player.SetActive(false);//플레이어를 화면에서 없애야 한다
-        iscarFree=false;//자동차에 탔으므로 iscarFree를 false로 해준다
+        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,false);//모든 클라이언트에서 false로 바뀌어야한다
+        //늦게들어온 플레이어도 받아야하므로 AllBufferedViaServer
         carCamera.SetActive(true);// 자동차를 따라가야 한다
     }
     private void GetOut()//자동차에서 내리기
@@ -67,10 +68,14 @@ public class CarManager : MonoBehaviourPun , IPunOwnershipCallbacks
         CarCanvas.SetActive(false);
         player.transform.parent=null;
         player.SetActive(true);
-        iscarFree=true;
+        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,true);//모든 클라이언트에서 true로 바뀌어야한다
         carCamera.SetActive(false);
     }
-
+    [PunRPC]
+    void SetCarState(bool status)
+    {
+        iscarFree=status;
+    }
     void IPunOwnershipCallbacks.OnOwnershipRequest(Photon.Pun.PhotonView targetView, Photon.Realtime.Player requestingPlayer)
     {
         // OnOwnershipRequest gets called on every script that implements it every time a request for ownership transfer of any object occurs
