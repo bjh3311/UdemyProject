@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityStandardAssets.Vehicles.Car;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -16,6 +16,8 @@ public class CarManager : MonoBehaviourPun
 
     GameObject player;
     public bool iscarFree=true;
+
+    private GameObject crosshair;
 
     private void OnTriggerEnter(Collider collision)//자동차 주변 범위 안에 들어왔으면
     {
@@ -54,6 +56,16 @@ public class CarManager : MonoBehaviourPun
     private void GetIn()//자동차에 태우기
     {
         base.photonView.RequestOwnership();//이 함수가 실행되면IPunOwnershipCallbacks.OnOwnershipRequest실행
+        this.gameObject.GetComponent<CarAudio>().enabled=true;//자동차에 탓을때만 자동차의 Audio를 켜준다
+        if(crosshair==null)
+        {
+            crosshair=GameObject.Find("CrossHairCanvas(Clone)");
+            crosshair.SetActive(false);
+        }
+        else
+        {
+            crosshair.SetActive(false);
+        }
         playerCanvas.SetActive(false);//기본 플레이어 UI 끄기
         CarCanvas.SetActive(true);//자동차 UI켜기
         player.transform.SetParent(this.transform);//플레이어를 자동차의 하위 하이라키로 옮긴다
@@ -65,6 +77,9 @@ public class CarManager : MonoBehaviourPun
     private void GetOut()//자동차에서 내리기
     {
         playerCanvas.SetActive(true);
+        this.gameObject.GetComponent<CarAudio>().StopSound();
+        this.gameObject.GetComponent<CarAudio>().enabled=false;
+        crosshair.SetActive(true);
         CarCanvas.SetActive(false);
         player.transform.parent=null;
         player.SetActive(true);
