@@ -53,10 +53,20 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
 
     public float damage=0.01f;
 
+    [Space]
+    public GameObject chatSystem;
 
-    private void Start() 
+
+    private void Awake() 
     {
         PV=this.gameObject.GetPhotonView();
+        if(PV.IsMine)
+        {
+            chatSystem.SetActive(true);
+        }
+    }
+    private void Start() 
+    {
         if(PV.IsMine)
         {
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
