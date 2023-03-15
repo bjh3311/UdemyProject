@@ -5,6 +5,8 @@ ScriptsOnlyBuild:
     - BetterJump
     - CameraSwitch
     - CarManager
+    - ChatButton
+    - ChatMessageHandler
     - FireBtn
     - FixedButton
     - FixedJoystick
@@ -83,11 +85,14 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.Outline
     - UnityEngine.UI.RectMask2D
+    - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     Assembly-CSharp:
     - PlayerController/Arsenal
@@ -130,6 +135,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
     - UnityEngine.Events.PersistentListenerMode
+    - UnityEngine.RectOffset
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
@@ -142,6 +148,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
+    - UnityEngine.UI.ScrollRect/ScrollRectEvent
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
@@ -154,6 +161,48 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: LobbyManager
     methodName: OnClick_PlayNow
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatButton
+    methodName: OnClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatButton
+    methodName: OnClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatMessageHandler
+    methodName: SendMsg
   - assembly: Assembly-CSharp
     fullTypeName: CarManager
     methodName: OnClick_CarButton
@@ -256,6 +305,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4404}
     - Class: 114
+      Script: {instanceID: 4444}
+    - Class: 114
       Script: {instanceID: 4568}
     - Class: 114
       Script: {instanceID: 4704}
@@ -298,27 +349,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7164}
     - Class: 114
-      Script: {instanceID: 7396}
+      Script: {instanceID: 7220}
     - Class: 114
-      Script: {instanceID: 7434}
+      Script: {instanceID: 7398}
     - Class: 114
-      Script: {instanceID: 7488}
+      Script: {instanceID: 7436}
     - Class: 114
-      Script: {instanceID: 7534}
+      Script: {instanceID: 7490}
     - Class: 114
-      Script: {instanceID: 7826}
+      Script: {instanceID: 7536}
     - Class: 114
-      Script: {instanceID: 7966}
+      Script: {instanceID: 7636}
     - Class: 114
-      Script: {instanceID: 8398}
+      Script: {instanceID: 7828}
     - Class: 114
-      Script: {instanceID: 8652}
+      Script: {instanceID: 7968}
     - Class: 114
-      Script: {instanceID: 8830}
+      Script: {instanceID: 8400}
     - Class: 114
-      Script: {instanceID: 8964}
+      Script: {instanceID: 8404}
     - Class: 114
-      Script: {instanceID: 9326}
+      Script: {instanceID: 8654}
+    - Class: 114
+      Script: {instanceID: 8832}
+    - Class: 114
+      Script: {instanceID: 8834}
+    - Class: 114
+      Script: {instanceID: 8968}
+    - Class: 114
+      Script: {instanceID: 9330}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -443,6 +502,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4206}
     - Class: 114
+      Script: {instanceID: 4444}
+    - Class: 114
       Script: {instanceID: 4934}
     - Class: 114
       Script: {instanceID: 5302}
@@ -467,19 +528,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7164}
     - Class: 114
-      Script: {instanceID: 7396}
+      Script: {instanceID: 7220}
     - Class: 114
-      Script: {instanceID: 7434}
+      Script: {instanceID: 7398}
     - Class: 114
-      Script: {instanceID: 7488}
+      Script: {instanceID: 7436}
     - Class: 114
-      Script: {instanceID: 7966}
+      Script: {instanceID: 7490}
     - Class: 114
-      Script: {instanceID: 8652}
+      Script: {instanceID: 7536}
     - Class: 114
-      Script: {instanceID: 8830}
+      Script: {instanceID: 7636}
     - Class: 114
-      Script: {instanceID: 8954}
+      Script: {instanceID: 7968}
+    - Class: 114
+      Script: {instanceID: 8404}
+    - Class: 114
+      Script: {instanceID: 8654}
+    - Class: 114
+      Script: {instanceID: 8832}
+    - Class: 114
+      Script: {instanceID: 8834}
+    - Class: 114
+      Script: {instanceID: 8958}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -2161,7 +2232,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: d65390c346f81b5ae37fcd0a021a2eb9
+      Hash: 70e8d92297ee72ee9af023f487932b75
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MyPlayer
@@ -2183,6 +2254,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.PunBasics
     className: PlayerNameInputField
+  - hash:
+      serializedVersion: 2
+      Hash: 69c2028455fca863eccb8204a89749a5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ChatButton
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
@@ -2681,6 +2758,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.dll
     namespaceName: Photon.Pun
     className: PhotonTransformView
+  - hash:
+      serializedVersion: 2
+      Hash: 2b8fc5f6301939a46830c9403380f4a1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ChatMessageHandler
   - hash:
       serializedVersion: 2
       Hash: ee1dba1a186ac062d564e9eb73a1c56f

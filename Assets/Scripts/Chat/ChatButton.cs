@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ChatButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject chatMessages;
+    public void OnClick()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(chatMessages.activeSelf)
+        {
+            chatMessages.SetActive(false);
+        }
+        else
+        {
+            chatMessages.SetActive(true);
+        }
     }
 }

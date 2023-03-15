@@ -113,7 +113,8 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         if(inputDir!=Vector2.zero)//움직임을 멈췄을 때 다시 처음 각도로 돌아가는걸 막기위함
         {
             float rotation=Mathf.Atan2(inputDir.x,inputDir.y)*Mathf.Rad2Deg+cameraTransform.eulerAngles.y;
-            transform.eulerAngles=Vector3.up*Mathf.SmoothDampAngle(transform.eulerAngles.y,rotation,ref rotationVelocity,smoothRotationTime);
+            transform.eulerAngles=Vector3.up*Mathf.SmoothDampAngle(transform.eulerAngles.y,rotation,
+                                                                    ref rotationVelocity,smoothRotationTime);
         
             if(!runSound.isPlaying)
             {
@@ -122,6 +123,8 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         }
         else
         {
+            transform.eulerAngles=Vector3.up*Mathf.SmoothDampAngle(transform.eulerAngles.y,cameraTransform.eulerAngles.y,
+                                                                     ref rotationVelocity,smoothRotationTime);
             runSound.Stop();
         }
         //각도를 구해주는 코드, 플레이어가 오른쪽 위 대각선으로 움직일시 그 방향을 바라보게 해준다

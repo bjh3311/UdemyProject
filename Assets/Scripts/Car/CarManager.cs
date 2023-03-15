@@ -70,7 +70,7 @@ public class CarManager : MonoBehaviourPun
         CarCanvas.SetActive(true);//자동차 UI켜기
         player.transform.SetParent(this.transform);//플레이어를 자동차의 하위 하이라키로 옮긴다
         player.SetActive(false);//플레이어를 화면에서 없애야 한다
-        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,false);//모든 클라이언트에서 false로 바뀌어야한다
+        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,false,player.GetPhotonView().ViewID);//모든 클라이언트에서 false로 바뀌어야한다
         //늦게들어온 플레이어도 받아야하므로 AllBufferedViaServer
         carCamera.SetActive(true);// 자동차를 따라가야 한다
     }
@@ -83,11 +83,11 @@ public class CarManager : MonoBehaviourPun
         CarCanvas.SetActive(false);
         player.transform.parent=null;
         player.SetActive(true);
-        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,true);//모든 클라이언트에서 true로 바뀌어야한다
+        photonView.RPC("SetCarState",RpcTarget.AllBufferedViaServer,true,player.GetPhotonView().ViewID);//모든 클라이언트에서 true로 바뀌어야한다
         carCamera.SetActive(false);
     }
     [PunRPC]
-    void SetCarState(bool status)
+    void SetCarState(bool status,int photonViewID)
     {
         iscarFree=status;
     }
