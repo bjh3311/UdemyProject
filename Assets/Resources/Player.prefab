@@ -379,8 +379,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
@@ -653,8 +653,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
@@ -678,7 +678,6 @@ GameObject:
   - component: {fileID: 556334344}
   - component: {fileID: 556334343}
   - component: {fileID: 556334346}
-  - component: {fileID: 891924860}
   m_Layer: 0
   m_Name: ChatMessages
   m_TagString: Untagged
@@ -788,19 +787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
---- !u!114 &891924860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556334341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02536d5706dbee04aba0af6302df7a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageReceived: {fileID: 1270005341}
 --- !u!1 &610435488
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,8 +909,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
@@ -1042,6 +1028,7 @@ GameObject:
   - component: {fileID: 864236205}
   - component: {fileID: 864236207}
   - component: {fileID: 864236206}
+  - component: {fileID: 8289213742002466373}
   m_Layer: 0
   m_Name: ChatSystem
   m_TagString: Untagged
@@ -1110,6 +1097,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8289213742002466373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864236204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02536d5706dbee04aba0af6302df7a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageReceived: {fileID: 1270005341}
 --- !u!1 &938762628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,8 +1977,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
@@ -4219,8 +4219,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
@@ -4353,8 +4353,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 891924860}
-        m_TargetAssemblyTypeName: ChatMesseageHandler, Assembly-CSharp
+      - m_Target: {fileID: 8289213742002466373}
+        m_TargetAssemblyTypeName: ChatMessageHandler, Assembly-CSharp
         m_MethodName: SendMsg
         m_Mode: 5
         m_Arguments:
