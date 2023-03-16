@@ -233,6 +233,11 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             fillImage.fillAmount=playerHealth;
         }
     }
+    [PunRPC]
+    public void HideShowPlayer(bool hide)
+    {
+        transform.gameObject.SetActive(hide);
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
     {
