@@ -31,6 +31,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     private void Awake() 
     {
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.AutomaticallySyncScene=true;// 방장이 플레이 씬으로 넘어가면 다른 클라이언트도 넘어가게
     }//Connect to PhotonNetwork based on UsingSetting
     //You can check your UsingSetting on your asset folder
     
@@ -49,7 +50,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     
     public override void OnJoinedRoom()
     {
-        int sizeOfPlayers=PhotonNetwork.CountOfPlayersInRooms;
+        int sizeOfPlayers=PhotonNetwork.CurrentRoom.PlayerCount;
         AssignTeam(sizeOfPlayers);
         lobbyUI.SetActive(true);
         if(PhotonNetwork.IsMasterClient)//만약 내가 마스터 클라이언트라면
@@ -89,9 +90,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     }
     public void OnClick_JoinBtn()
     {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers=4;
-        PhotonNetwork.JoinOrCreateRoom(joinRoom.text,roomOptions,TypedLobby.Default,null);
+        PhotonNetwork.JoinRoom(joinRoom.text,null);
     }
     public void OnClick_PlayNow()
     {
@@ -140,10 +139,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         }
         else
         {
-            if(count==4)
+            if(count==4)//모든 플레이어가(4명) 준비 완료되었다면
             {
                 lobbyText.text="All Set : Play the Game Scene";
-                PhotonNetwork.LoadLevel(1);
+                PhotonNetwork.LoadLevel(1);//1번째 씬을 불러온다
             }
         }
     }
