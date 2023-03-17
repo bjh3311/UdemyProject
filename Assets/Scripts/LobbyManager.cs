@@ -41,6 +41,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     
     public override void OnJoinedRoom()
     {
+        int sizeOfPlayers=PhotonNetwork.CountOfPlayersInRooms;
+        AssignTeam(sizeOfPlayers);
         PhotonNetwork.LoadLevel(1);
         //Loading the index 1 scene
     }
@@ -81,7 +83,27 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         statusText.text="Creating Room...Please Wait...";
         //Joining Random room if it is available
         //if it is not available and failed to connect, OnJoinRandomFailed function will be executed
+
     }//function for Button PlayNow
+
+    #endregion
+
+    #region My_Functions
+
+    void AssignTeam(int sizeOfPlayer)
+    {
+
+        ExitGames.Client.Photon.Hashtable hash=new ExitGames.Client.Photon.Hashtable();
+        if(sizeOfPlayer%2==0)
+        {
+            hash.Add("Team",0);
+        }
+        else
+        {
+            hash.Add("Team",1);
+        }
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
 
     #endregion
 

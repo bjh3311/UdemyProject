@@ -56,13 +56,16 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     [Space]
     public GameObject chatSystem;
 
+    public Text teamText;
 
+    private bool teamNum=false;
     private void Awake() 
     {
         PV=this.gameObject.GetPhotonView();
         if(PV.IsMine)
         {
             chatSystem.SetActive(true);
+            
         }
     }
     private void Start() 
@@ -79,16 +82,25 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             crossHair=Instantiate(crossHair);
             rb=this.gameObject.GetComponent<Rigidbody>();
             healthBar.SetActive(true);
+            teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Team",out object value);
+              
         }
         else
         {
             this.gameObject.GetComponent<BetterJump>().enabled=false;
+            teamText.enabled=false;
         }
     }
     void LateUpdate()
     {
         if(PV.IsMine)
         {
+            if(!teamNum&&PhotonNetwork.LocalPlayer.CustomProperties["Team"]!=null)
+            {
+                teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+                teamNum=true;
+            }
+            
             PositionCrossHair();
         }
     }
