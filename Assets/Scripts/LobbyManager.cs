@@ -7,19 +7,25 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
+using ExitGames.Client.Photon;
+
 public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network callback
 {
    [Header("---UI Screens---")]
    public GameObject roomUI;
    public GameObject connectUI;
+   public GameObject lobbyUI;
 
    [Header("---UI Text---")]
    public TMP_Text statusText;
    public TMP_Text connectingText;
+   public Text startBtnText;
+   public Text lobbyText;
 
     [Header("---UI InputFields---")]
     public TMP_InputField createRoom;
     public TMP_InputField joinRoom;
+    public Button startButton;
 
     private void Awake() 
     {
@@ -43,7 +49,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     {
         int sizeOfPlayers=PhotonNetwork.CountOfPlayersInRooms;
         AssignTeam(sizeOfPlayers);
-        PhotonNetwork.LoadLevel(1);
+        //PhotonNetwork.LoadLevel(1);
+
+        lobbyUI.SetActive(true);
+        if(PhotonNetwork.IsMasterClient)//만약 내가 마스터 클라이언트라면
+        {
+            startBtnText.text="waiting for players";
+        }
+        else
+        {
+            startBtnText.text="Ready!";
+        }
         //Loading the index 1 scene
     }
 
@@ -107,5 +123,73 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
 
     #endregion
 
+    public void OnClickStartButton()
+    {
+        if(!PhotonNetwork.IsMasterClient)//방장이 아닌 참가자라면
+        {
+            SendMsg();
+            startButton.interactable=false;//한번 레디 누르면 못 바꾼다
+            startBtnText.text="Wait...";
+        }
+        else
+        {
+            
+        }
+    }
+
+    #region RasieEvent
+
+    private void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived+=OnEvent;
+    }
+    private void OnDisable() 
+    {
+        PhotonNetwork.NetworkingClient.EventReceived-=OnEvent;
+    }
+    enum EventCodes
+    {
+        ready=1
+    }
+    int count =1;
+    public void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+        object content=photonEvent.CustomData;
+        EventCodes code=(EventCodes)eventCode;
+        if(code==EventCodes.ready)//받은 이벤트의 분류가 ready라면
+        {
+            object[] datas=content as object[];
+            if(PhotonNetwork.IsMasterClient)
+            {
+                count++;
+                if(count==4)
+                {
+                    startBtnText.text="START !";
+                }
+                else
+                {
+                    startBtnText.text="Only "+ count + " / 4 players are Ready";
+                }
+            }
+        }
+    }
+    
+    private void SendMsg()
+    {
+        string message = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
+        object[] datas=new object[] { message };
+        RaiseEventOptions options = new RaiseEventOptions
+        {
+            CachingOption = EventCaching.DoNotCache,
+            Receivers = ReceiverGroup.MasterClient,//마스터 클라이언트(방장)에게만 보낸다
+        };
+        SendOptions sendOp=new SendOptions();
+        sendOp.Reliability=true;
+
+        PhotonNetwork.RaiseEvent((byte)EventCodes.ready,datas,options,sendOp);
+    }
+
+    #endregion
 
 }
