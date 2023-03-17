@@ -83,6 +83,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
@@ -152,6 +153,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: LobbyManager
+    methodName: OnClickStartButton
   - assembly: Assembly-CSharp
     fullTypeName: LobbyManager
     methodName: OnClick_JoinBtn
@@ -318,6 +322,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5016}
     - Class: 114
       Script: {instanceID: 5302}
+    - Class: 114
+      Script: {instanceID: 5446}
     - Class: 114
       Script: {instanceID: 5554}
     - Class: 114
@@ -1470,7 +1476,7 @@ ScriptsOnlyBuild:
     className: AdaptiveViewDistance
   - hash:
       serializedVersion: 2
-      Hash: 36dd187e4b19ea83cbb13ff7fd9e5e34
+      Hash: 30cddf0720d3d2bd2e7f077b82bb6534
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LobbyManager

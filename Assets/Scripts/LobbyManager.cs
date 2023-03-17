@@ -26,6 +26,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     public TMP_InputField createRoom;
     public TMP_InputField joinRoom;
     public Button startButton;
+    public TMP_InputField userName;
 
     private void Awake() 
     {
@@ -43,14 +44,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         connectUI.SetActive(false);
         roomUI.SetActive(true);
         statusText.text="Joined To Lobby...";
+        userName.text="Player" + Random.Range(100,999);
     }// Called on entering a lobby on the Master Server. The actual room-list updates will call OnRoomListUpdate.
     
     public override void OnJoinedRoom()
     {
         int sizeOfPlayers=PhotonNetwork.CountOfPlayersInRooms;
         AssignTeam(sizeOfPlayers);
-        //PhotonNetwork.LoadLevel(1);
-
         lobbyUI.SetActive(true);
         if(PhotonNetwork.IsMasterClient)//만약 내가 마스터 클라이언트라면
         {
@@ -95,6 +95,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     }
     public void OnClick_PlayNow()
     {
+        if(string.IsNullOrEmpty(userName.text))//유저네임이 비어있다면
+        {
+            userName.text="Uses" + Random.Range(100,999);
+        }
+        PhotonNetwork.LocalPlayer.NickName = userName.text;
+        //로컬플레이어의 닉네임설정
+
         PhotonNetwork.JoinRandomRoom();
         statusText.text="Creating Room...Please Wait...";
         //Joining Random room if it is available
@@ -133,7 +140,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         }
         else
         {
-            
+            if(count==4)
+            {
+                lobbyText.text="All Set : Play the Game Scene";
+                PhotonNetwork.LoadLevel(1);
+            }
         }
     }
 
@@ -141,6 +152,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
 
     private void OnEnable()
     {
+        base.OnEnable();
         PhotonNetwork.NetworkingClient.EventReceived+=OnEvent;
     }
     private void OnDisable() 
