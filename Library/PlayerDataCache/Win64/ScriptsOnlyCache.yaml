@@ -14,6 +14,7 @@ ScriptsOnlyBuild:
     - ForwardButton
     - GameManager
     - LobbyManager
+    - LobbyPlayer
     - MyCamera
     - MyPlayer
     - OpenElement
@@ -60,6 +61,7 @@ ScriptsOnlyBuild:
     - UnityEngine.AdaptivePerformance.Samsung.Android.SamsungAndroidProviderSettings
     Unity.AdaptivePerformance.Simulator.Editor.dll:
     - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderLoader
+    - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderSettings
     Unity.AdaptivePerformance.dll:
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceGeneralSettings
     - UnityEngine.AdaptivePerformance.AdaptivePerformanceManagerSettings
@@ -383,6 +385,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8968}
     - Class: 114
       Script: {instanceID: 9330}
+    - Class: 114
+      Script: {instanceID: 25524}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -2919,6 +2923,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: f23b1e256af528af43a84d4e79505237
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyPlayer
   platform: 19
   scenePathNames:
   - Assets/Scenes/Lobby.unity
