@@ -100,12 +100,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
                 teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties["Team"];
                 teamNum=true;
             }
-            
-            PositionCrossHair();
         }
     }
 
-    void Update()
+    void LocalPlayerUpdate()
     {
         if(!PV.IsMine)
         {
@@ -164,6 +162,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         {
             transform.Translate(transform.forward*currentSpeed*Time.deltaTime,Space.World);
         }
+        PositionCrossHair();
     }
     void PositionCrossHair()//크로스헤어를 카메라의 중앙에 둔다
     {
@@ -242,6 +241,10 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         playerHealth=playerHealth-amount;
         if(photonView.IsMine)
         {
+            if(playerHealth<=0)
+            {
+                Death();
+            }
             fillImage.fillAmount=playerHealth;
         }
     }
@@ -268,6 +271,18 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
                 FireUp();
             }
         }
+    }
+    [PunRPC]
+    public void HidePlayerMesh()
+    {
+        transform.Find("Soldier").gameObject.SetActive(false);
+        //만약 플레이어를 완전히 꺼버리면 스크립트도 못사용해서 관전모드에 못들어간다
+    }
+    void Death()
+    {
+        anim.SetTrigger("death");
+        photonView.RPC("HidePlayerMesh",RpcTarget.All);
+        GameManager.instance.Spectate();
     }
 
 
