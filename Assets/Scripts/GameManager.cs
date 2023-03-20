@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Transform playerSpawnPosition;
 
-    private GameObject deathScreen;
+    public GameObject deathScreen;
     public Text totalAlive;
 
     public Text pingrateTextx;
+
+    public GameObject spectateContainer;
+    public GameObject spectateObject;
     void Awake()//First of all, make the player. It makes camera can track the player.
     {
         instance=this;
@@ -28,9 +31,23 @@ public class GameManager : MonoBehaviour
     {
         pingrateTextx.text=PhotonNetwork.GetPing().ToString();
     }
-    public void Spectate();
+
+
+    public void Spectate()
     {
         deathScreen.SetActive(true);
+    }
+    void FindAllPlayer()
+    {
+        GameObject[] players=GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject temp in players)
+        {
+            if(!temp.GetComponent<MyPlayer>().isDead)
+            {
+                GameObject so =Instantiate(spectateObject,spectateContainer.transform);
+                so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
+            }
+        }
     }
 
 }

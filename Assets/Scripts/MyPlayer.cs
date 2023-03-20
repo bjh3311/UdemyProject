@@ -59,6 +59,9 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public Text teamText;
 
     private bool teamNum=false;
+
+    [HideInInspector]
+    public bool isDead=false;//죽었는지 나타내는 bool
     private void Awake() 
     {
         PV=this.gameObject.GetPhotonView();
@@ -280,6 +283,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     }
     void Death()
     {
+        isDead=true;//죽음처리 해준다
         anim.SetTrigger("death");
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
