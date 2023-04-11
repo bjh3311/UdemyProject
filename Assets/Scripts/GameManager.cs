@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
             {
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);
                 so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
+                //so.transform.Find("SpectateButton").GetComponent<Spectate
             }
         }
     }
