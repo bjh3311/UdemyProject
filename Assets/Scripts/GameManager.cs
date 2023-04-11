@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         GameObject[] players=GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject temp in players)
         {
+            if(player.name.Contains("Car"))
+            {
+                continue;
+            }
             if(!temp.GetComponent<MyPlayer>().isDead)
             {
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);

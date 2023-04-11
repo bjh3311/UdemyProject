@@ -284,7 +284,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     void Death()
     {
         isDead=true;//죽음처리 해준다
-        anim.SetTrigger("death");
+        anim.SetTrigger("death");//dead 애니메이션
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
     }
