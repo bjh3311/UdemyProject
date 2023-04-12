@@ -18,15 +18,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
 
    [Header("---UI Text---")]
    public TMP_Text statusText;
-   public TMP_Text connectingText;
+   public Text connectingText;
    public Text startBtnText;
    public Text lobbyText;
 
     [Header("---UI InputFields---")]
-    public TMP_InputField createRoom;
-    public TMP_InputField joinRoom;
+    public InputField createRoom;
+    public InputField joinRoom;
     public Button startButton;
-    public TMP_InputField userName;
+    public InputField userName;
 
     private void Awake() 
     {
@@ -214,6 +214,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         sendOp.Reliability=true;
 
         PhotonNetwork.RaiseEvent((byte)EventCodes.ready,datas,options,sendOp);
+    }
+    public void Exit()
+    {
+        #if UNITY_EDITOR //유니티 에디터에서 작동하게
+            UnityEditor.EditorApplication.isPlaying=false;
+        #else //실제 플레이환경에서 작동하게
+            Application.Quit();
+        #endif
     }
 
     #endregion

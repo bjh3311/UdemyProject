@@ -793,7 +793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &255164181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c42692bb34f7a046936bc2fdf52ef49, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1795,7 +1795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &920053915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3224,17 +3224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83e53dc27446c04a873ed2ceb88245a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomUI: {fileID: 255164180}
-  connectUI: {fileID: 1428386412}
-  lobbyUI: {fileID: 920053914}
-  statusText: {fileID: 932893007}
-  connectingText: {fileID: 1671711230}
-  startBtnText: {fileID: 1883768613}
-  lobbyText: {fileID: 0}
-  createRoom: {fileID: 1898558131}
-  joinRoom: {fileID: 821795820}
-  userName: {fileID: 208596778}
-  startButton: {fileID: 30356736}
 --- !u!4 &1635285464
 Transform:
   m_ObjectHideFlags: 0
@@ -3262,9 +3251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aae3d0b48b44db4ba14afe9d452275d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersContainer: {fileID: 901282113}
-  playerObjectPrefab: {fileID: 968030396952671105, guid: eac10448f5c3b424ebfc58a402f8aa8e,
-    type: 3}
 --- !u!1 &1671711227
 GameObject:
   m_ObjectHideFlags: 0
