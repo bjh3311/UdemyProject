@@ -53,6 +53,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         int sizeOfPlayers=PhotonNetwork.CurrentRoom.PlayerCount;
         AssignTeam(sizeOfPlayers);
         lobbyUI.SetActive(true);//로비 UI를 켜준다
+        roomUI.SetActive(false);
         foreach(Player temp in PhotonNetwork.CurrentRoom.Players.Values)//방에 들어와 있는 플레이어를 추가한다.
         {
             GetComponent<LobbyPlayer>().AddPlayer(temp.NickName);
