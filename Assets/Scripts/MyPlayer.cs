@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -75,14 +76,15 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     {
         if(PV.IsMine)
         {
+            crossHair=Resources.Load("CrosshairCanvas") as GameObject;
+            crossHair=Instantiate(crossHair);
             joystick=GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
             GameObject.Find("Shoot").GetComponent<FireBtn>().SetPlayer(this);
             GameObject.Find("Jump").GetComponent<FixedButton>().SetPlayer(this);
-            muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>();
-            crossHair=Resources.Load("CrosshairCanvas") as GameObject;
+            muzzle=rayOrigin.Find("SciFiRifle(Clone)/GunMuzzle").GetComponent<ParticleSystem>(); 
             cameraTransform =Camera.main.transform;
             anim=this.GetComponent<Animator>();
-            crossHair=Instantiate(crossHair);
+            
             rb=this.gameObject.GetComponent<Rigidbody>();
             healthBar.SetActive(true);
             teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Team",out object value);
@@ -90,6 +92,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         }
         else
         {
+            
             this.gameObject.GetComponent<BetterJump>().enabled=false;
             teamText.enabled=false;
         }
@@ -103,18 +106,17 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
                 teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties["Team"];
                 teamNum=true;
             }
+            if(!isDead)
+            {
+                LocalPlayerUpdate();
+            }
         }
     }
 
     void LocalPlayerUpdate()
     {
-        if(!PV.IsMine)
-        {
-            return;
-        }
         Vector2 input =Vector2.zero;
         input=new Vector2(joystick.input.x,joystick.input.y);
-
         //GetAxisRaw("Horizontal") :오른쪽 방향키누르면 1을 반환, 아무것도 안누르면 0, 왼쪽방향키는 -1 반환
         //GetAxis("Horizontal"):-1과 1 사이의 실수값을 반환
         //Vertical은 위쪽방향키 누를시 1,아무것도 안누르면 0, 아래쪽방향키는 -1 반환

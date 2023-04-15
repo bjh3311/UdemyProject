@@ -10,7 +10,7 @@ public class MyCamera : MonoBehaviour
     
     private Transform target;//Player
 
-    private float rotSensitive=0.3f;//카메라 회전 감도
+    private float rotSensitive=0.2f;//카메라 회전 감도
     private float dis=2f;//카메라와 플레이어사이의 거리
     private float RotationMin=-10f;//카메라 회전각도 최소
     private float RotationMax=80f;//카메라 회전각도 최대
