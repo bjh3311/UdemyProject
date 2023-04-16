@@ -12,7 +12,7 @@ public class SpectateButton : MonoBehaviour ,IPointerClickHandler
         spectateCamera = GameObject.Find("SpectateCamera");
         spectateCamera.GetComponent<Camera>().enabled=true;
         SmoothFollow smoothFollow = spectateCamera.GetComponent<SmoothFollow>();
-        smoothFollow.target=target.transform;
         smoothFollow.enabled=true;
+        smoothFollow.target=target.transform;
     }
 }

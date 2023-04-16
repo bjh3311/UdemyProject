@@ -52,7 +52,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public Image fillImage;
     public float playerHealth = 1f;
 
-    public float damage=0.01f;
+    private float damage=0.003f;
 
     [Space]
     public GameObject chatSystem;
@@ -244,7 +244,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public void GetDamage(float amount)
     {
         playerHealth=playerHealth-amount;
-        if(photonView.IsMine)
+        if(photonView.IsMine&&!isDead)
         {
             if(playerHealth<=0)
             {
@@ -286,7 +286,6 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     void Death()
     {
         isDead=true;//죽음처리 해준다
-        anim.SetTrigger("death");//dead 애니메이션
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
     }

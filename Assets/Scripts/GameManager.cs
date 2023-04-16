@@ -36,13 +36,14 @@ public class GameManager : MonoBehaviour
     public void Spectate()
     {
         deathScreen.SetActive(true);
+        FindAllPlayer();
     }
     void FindAllPlayer()
     {
         GameObject[] players=GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject temp in players)
         {
-            if(player.name.Contains("Car"))
+            if(temp.name.Contains("Car"))
             {
                 continue;
             }
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
             {
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);
                 so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
-                //so.transform.Find("SpectateButton").GetComponent<Spectate
+                so.transform.Find("SpectateBtn").GetComponent<SpectateButton>().target = player;
             }
         }
     }
