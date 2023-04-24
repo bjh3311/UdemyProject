@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
             }
             if(!temp.GetComponent<MyPlayer>().isDead)
             {
+                Debug.Log(temp.name);
+                Debug.Log(temp.GetComponent<MyPlayer>().isDead);
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);
                 so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
                 so.transform.Find("SpectateBtn").GetComponent<SpectateButton>().target = player;

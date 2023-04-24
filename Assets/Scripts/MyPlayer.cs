@@ -253,11 +253,6 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             fillImage.fillAmount=playerHealth;
         }
     }
-    [PunRPC]
-    public void HideShowPlayer(bool hide)
-    {
-        transform.gameObject.SetActive(hide);
-    }
 
     public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
     {
@@ -281,11 +276,18 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     public void HidePlayerMesh()
     {
         transform.Find("Soldier").gameObject.SetActive(false);
+        transform.Find("RigAss").gameObject.SetActive(false);
         //만약 플레이어를 완전히 꺼버리면 스크립트도 못사용해서 관전모드에 못들어간다
+    }
+    [PunRPC]
+    public void sendDead()
+    {
+        isDead=true;
+        this.transform.GetComponent<CapsuleCollider>().enabled=false;
     }
     void Death()
     {
-        isDead=true;//죽음처리 해준다
+        photonView.RPC("sendDead",RpcTarget.All);
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
     }
