@@ -275,19 +275,14 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     [PunRPC]
     public void HidePlayerMesh()
     {
+        isDead=true;
+        this.transform.GetComponent<CapsuleCollider>().enabled=false;
         transform.Find("Soldier").gameObject.SetActive(false);
         transform.Find("RigAss").gameObject.SetActive(false);
         //만약 플레이어를 완전히 꺼버리면 스크립트도 못사용해서 관전모드에 못들어간다
     }
-    [PunRPC]
-    public void sendDead()
-    {
-        isDead=true;
-        this.transform.GetComponent<CapsuleCollider>().enabled=false;
-    }
     void Death()
     {
-        photonView.RPC("sendDead",RpcTarget.All);
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
     }
