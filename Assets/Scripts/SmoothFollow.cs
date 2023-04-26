@@ -9,12 +9,12 @@ public class SmoothFollow : MonoBehaviour
     [HideInInspector]
     public Transform target;
     // The distance in the x-z plane to the target
-    public float distance = 5.0f;
+    private float distance = 4.0f;
     // the height we want the camera to be above the target
-    public float height = 3.0f;
+    private float height = 3.0f;
     // How much we
-    public float heightDamping = 1.0f;
-    public float rotationDamping = 2.0f;
+    private float heightDamping = 1.0f;
+    private float rotationDamping = 2.0f;
     float wantedRotationAngle;
     float wantedHeight;
     float currentRotationAngle;
