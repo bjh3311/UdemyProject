@@ -48,11 +48,7 @@ public class GameManager : MonoBehaviour
                 continue;
             }
             if(!temp.GetComponent<MyPlayer>().isDead)
-            {
-                if(daedPlayer==totalPlayer-1)
-                {
-                    temp.GetPhotonView().RPC("Iwin",RpcTarget.All);
-                }
+            { 
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);
                 so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
                 so.transform.Find("SpectateBtn").GetComponent<SpectateButton>().target = temp;
@@ -60,21 +56,29 @@ public class GameManager : MonoBehaviour
             else
             {
                 daedPlayer++;
-                Debug.Log(daedPlayer);
+            } 
+            
+        }
+        if(daedPlayer==totalPlayer-1)//한명 빼고 다 죽었다는게 
+        {
+            foreach(GameObject temp in players)
+            {
+                temp.GetPhotonView().RPC("Iwin",RpcTarget.All);
             }
         }
     }
     public void ShowWinScreen()
     {
         winScreen.SetActive(true);
+        PhotonNetwork.AutomaticallySyncScene=false;
     }
     public void ShowLoseScreen()
     {
         loseScreen.SetActive(true);
+        PhotonNetwork.AutomaticallySyncScene=false;
     }
     public void GoToLobby()
     {
         PhotonNetwork.LoadLevel(0);//1번째 씬을 불러온다
     }
-
 }

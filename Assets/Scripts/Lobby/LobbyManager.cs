@@ -51,7 +51,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     public override void OnJoinedRoom()//LocalPlayer가 방에 들어갈 때 실행된다
     {
         int sizeOfPlayers=PhotonNetwork.CurrentRoom.PlayerCount;
-        AssignTeam(sizeOfPlayers);
+        //AssignTeam(sizeOfPlayers);
         lobbyUI.SetActive(true);//로비 UI를 켜준다
         roomUI.SetActive(false);
         foreach(Player temp in PhotonNetwork.CurrentRoom.Players.Values)//방에 들어와 있는 플레이어를 추가한다.
@@ -126,7 +126,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
 
     #endregion
 
-    #region My_Functions
+    /* #region My_Functions
 
     void AssignTeam(int sizeOfPlayer)
     {
@@ -144,6 +144,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     }
 
     #endregion
+    */
 
     public void OnClickStartButton()
     {

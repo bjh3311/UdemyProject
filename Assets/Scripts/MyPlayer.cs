@@ -57,9 +57,9 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     [Space]
     public GameObject chatSystem;
 
-    public Text teamText;
+    //public Text teamText;
 
-    private bool teamNum=false;
+    //private bool teamNum=false;
 
     [HideInInspector]
     public bool isDead=false;//죽었는지 나타내는 bool
@@ -87,25 +87,24 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             
             rb=this.gameObject.GetComponent<Rigidbody>();
             healthBar.SetActive(true);
-            teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Team",out object value);
+            //teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Team",out object value);
               
         }
         else
         {
-            
             this.gameObject.GetComponent<BetterJump>().enabled=false;
-            teamText.enabled=false;
+            //teamText.enabled=false;
         }
     }
     void LateUpdate()
     {
         if(PV.IsMine)
         {
-            if(!teamNum&&PhotonNetwork.LocalPlayer.CustomProperties["Team"]!=null)
+            /* if(!teamNum&&PhotonNetwork.LocalPlayer.CustomProperties["Team"]!=null)
             {
                 teamText.text = "Team : "+ PhotonNetwork.LocalPlayer.CustomProperties["Team"];
                 teamNum=true;
-            }
+            }*/
             if(!isDead)
             {
                 LocalPlayerUpdate();
@@ -291,15 +290,14 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     {
         if(photonView.IsMine)
         {
-            Debug.Log("difhalfh");
-            GameObject.Find("GameManager").GetComponent<GameManager>().ShowWinScreen();
-        }
-        else
-        {
-            GameObject.Find("GameManager").GetComponent<GameManager>().ShowLoseScreen();
+            if(isDead)
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().ShowLoseScreen();
+            }
+            else
+            {   
+                GameObject.Find("GameManager").GetComponent<GameManager>().ShowWinScreen();
+            }
         }
     }
-
-
-
 }
