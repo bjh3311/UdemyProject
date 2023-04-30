@@ -16,23 +16,22 @@ public class GameManager : MonoBehaviour
     public GameObject deathScreen;
     public Text totalAlive;
 
-    public Text pingrateTextx;
-
     public GameObject spectateContainer;
     public GameObject spectateObject;
+    private int totalPlayer=0;
+    public GameObject winScreen;
+    public GameObject loseScreen;
     void Awake()//First of all, make the player. It makes camera can track the player.
     {
         instance=this;
         PhotonNetwork.Instantiate(player.name,playerSpawnPosition.position,playerSpawnPosition.rotation);
     }
-    
-
-    private void Update() 
+    void Start()
     {
-        pingrateTextx.text=PhotonNetwork.GetPing().ToString();
+        PhotonNetwork.SendRate=25;
+        PhotonNetwork.SerializationRate=15;
+        totalPlayer=PhotonNetwork.PlayerList.Length;
     }
-
-
     public void Spectate()
     {
         deathScreen.SetActive(true);
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
     }
     void FindAllPlayer()
     {
+        int daedPlayer=0;
         GameObject[] players=GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject temp in players)
         {
@@ -49,13 +49,32 @@ public class GameManager : MonoBehaviour
             }
             if(!temp.GetComponent<MyPlayer>().isDead)
             {
-                Debug.Log(temp.name);
-                Debug.Log(temp.GetComponent<MyPlayer>().isDead);
+                if(daedPlayer==totalPlayer-1)
+                {
+                    temp.GetPhotonView().RPC("Iwin",RpcTarget.All);
+                }
                 GameObject so =Instantiate(spectateObject,spectateContainer.transform);
                 so.transform.Find("PlayerName").GetComponent<Text>().text=temp.GetPhotonView().Owner.NickName;
                 so.transform.Find("SpectateBtn").GetComponent<SpectateButton>().target = temp;
             }
+            else
+            {
+                daedPlayer++;
+                Debug.Log(daedPlayer);
+            }
         }
+    }
+    public void ShowWinScreen()
+    {
+        winScreen.SetActive(true);
+    }
+    public void ShowLoseScreen()
+    {
+        loseScreen.SetActive(true);
+    }
+    public void GoToLobby()
+    {
+        PhotonNetwork.LoadLevel(0);//1번째 씬을 불러온다
     }
 
 }

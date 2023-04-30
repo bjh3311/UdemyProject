@@ -214,6 +214,12 @@ ScriptsOnlyBuild:
     fullTypeName: ChatMessageHandler
     methodName: SendMsg
   - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: GoToLobby
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: GoToLobby
+  - assembly: Assembly-CSharp
     fullTypeName: CarManager
     methodName: OnClick_CarButton
   sceneClasses:
@@ -1988,7 +1994,7 @@ ScriptsOnlyBuild:
     className: AdaptivePerformanceGeneralSettings
   - hash:
       serializedVersion: 2
-      Hash: cccc9fbf807bbb5a3006fc26b8d38d2a
+      Hash: 64ea0794ecf45c09d15bf9fa78dc7a1f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

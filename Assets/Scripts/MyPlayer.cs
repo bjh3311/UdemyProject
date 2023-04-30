@@ -286,6 +286,20 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
     }
+    [PunRPC]
+    public void Iwin()
+    {
+        if(photonView.IsMine)
+        {
+            Debug.Log("difhalfh");
+            GameObject.Find("GameManager").GetComponent<GameManager>().ShowWinScreen();
+        }
+        else
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().ShowLoseScreen();
+        }
+    }
+
 
 
 }
