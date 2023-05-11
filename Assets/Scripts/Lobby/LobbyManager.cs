@@ -172,8 +172,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         base.OnEnable();
         PhotonNetwork.NetworkingClient.EventReceived+=OnEvent;
     }
-    private void OnDisable() 
+    private void OnDisable()
     {
+        base.OnDisable();//중요
         PhotonNetwork.NetworkingClient.EventReceived-=OnEvent;
     }
     enum EventCodes
