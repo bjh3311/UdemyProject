@@ -280,6 +280,16 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
         transform.Find("RigAss").gameObject.SetActive(false);
         //만약 플레이어를 완전히 꺼버리면 스크립트도 못사용해서 관전모드에 못들어간다
     }
+    [PunRPC]
+    public void RevealPlayerMesh()
+    {
+       this.gameObject.SetActive(true);
+    }
+    [PunRPC]
+    public void SetFalsePlayer()
+    {
+        this.gameObject.SetActive(false);
+    }
     void Death()
     {
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
@@ -290,11 +300,11 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     {
         if(photonView.IsMine)
         {
-            if(isDead)
+            if(isDead)//죽어있으면 패배화면
             {
                 GameObject.Find("GameManager").GetComponent<GameManager>().ShowLoseScreen();
             }
-            else
+            else//안죽어있으면 승리화면
             {   
                 GameObject.Find("GameManager").GetComponent<GameManager>().ShowWinScreen();
             }

@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        PhotonNetwork.SendRate=25;
-        PhotonNetwork.SerializationRate=15;
         totalPlayer=PhotonNetwork.PlayerList.Length;
     }
     public void Spectate()
@@ -57,9 +55,8 @@ public class GameManager : MonoBehaviour
             {
                 daedPlayer++;
             } 
-            
         }
-        if(daedPlayer==totalPlayer-1)//한명 빼고 다 죽었다는게 
+        if(daedPlayer==totalPlayer-1)//한명 빼고 다 죽었다는게 확인되면
         {
             foreach(GameObject temp in players)
             {
