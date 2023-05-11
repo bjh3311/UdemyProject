@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -45,7 +46,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
         connectUI.SetActive(false);
         roomUI.SetActive(true);
         statusText.text="Joined To Lobby...";
-        userName.text="Player" + Random.Range(100,999);
+        userName.text="Player" + UnityEngine.Random.Range(100,999);
     }// Called on entering a lobby on the Master Server. The actual room-list updates will call OnRoomListUpdate.
     
     public override void OnJoinedRoom()//LocalPlayer가 방에 들어갈 때 실행된다
@@ -79,7 +80,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        int roomName=Random.Range(0,10000);
+        int roomName=UnityEngine.Random.Range(0,10000);
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers=4;
         PhotonNetwork.CreateRoom(roomName.ToString(),roomOptions,TypedLobby.Default,null);//take above room options
@@ -112,7 +113,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     {
         if(string.IsNullOrEmpty(userName.text))//유저네임이 비어있다면
         {
-            userName.text="Uses" + Random.Range(100,999);
+            userName.text="Uses" + UnityEngine.Random.Range(100,999);
         }
         PhotonNetwork.LocalPlayer.NickName = userName.text;
         //로컬플레이어의 닉네임설정
@@ -128,7 +129,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
 
     /* #region My_Functions
 
-    void AssignTeam(int sizeOfPlayer)
+    void AssignTeam(int sizeOfPlayer)//팀설정인데 여기선 걍 의미없어서 코드만 쳐놓고 주석처리함
     {
 
         ExitGames.Client.Photon.Hashtable hash=new ExitGames.Client.Photon.Hashtable();

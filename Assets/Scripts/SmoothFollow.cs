@@ -20,10 +20,9 @@ public class SmoothFollow : MonoBehaviour
     float currentRotationAngle;
     float currentHeight;
     Quaternion currentRotation;
-
     void LateUpdate()
     {
-        if (target)
+        if (target)//target이 있다면
         {
             // Calculate the current rotation angles
             wantedRotationAngle = target.eulerAngles.y;
@@ -44,8 +43,9 @@ public class SmoothFollow : MonoBehaviour
             transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
             // Always look at the target
             if (shouldRotate)
+            {
                 transform.LookAt(target);
+            }            
         }
-
     }
 }

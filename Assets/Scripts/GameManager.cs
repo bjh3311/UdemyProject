@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager :  MonoBehaviourPunCallbacks
 {
 
     public static GameManager instance =null;
@@ -76,6 +77,10 @@ public class GameManager : MonoBehaviour
     }
     public void GoToLobby()
     {
-        PhotonNetwork.LoadLevel(0);//1번째 씬을 불러온다
+        PhotonNetwork.LeaveRoom();
+    }
+    public override void OnLeftRoom()//PhotonNetwork.LeaveRoom()이 실행되면 callback 된다
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 7536392}
   - component: {fileID: 7536391}
   - component: {fileID: 7536389}
+  - component: {fileID: 7536393}
   m_Layer: 0
   m_Name: SpectateCamera
   m_TagString: Untagged
@@ -213,6 +214,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7536393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7536388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &117611810
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +408,10 @@ PrefabInstance:
       propertyPath: playerCanvas
       value: 
       objectReference: {fileID: 1033716496}
+    - target: {fileID: 2007026640, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d, type: 3}
+      propertyPath: SpectateCamera
+      value: 
+      objectReference: {fileID: 7536388}
     - target: {fileID: 4603967637357477268, guid: 7f7b4d4dc6c37b74d8c5a2714d56d71d,
         type: 3}
       propertyPath: sceneViewId

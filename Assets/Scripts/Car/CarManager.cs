@@ -18,6 +18,7 @@ public class CarManager : MonoBehaviourPun
     public bool iscarFree=true;
 
     private GameObject crosshair;
+    public GameObject SpectateCamera;
 
     private void OnTriggerEnter(Collider collision)//자동차 주변 범위 안에 들어왔으면
     {
@@ -41,7 +42,6 @@ public class CarManager : MonoBehaviourPun
         CarInCanvas.SetActive(true);
         player=carplayer;
     }
-
     public void OnClick_CarButton()//자동차 타고 내리는 버튼 눌렀을때 실행
     {
         if(iscarFree)
