@@ -103,10 +103,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks//for using PUN2 Network ca
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers=4;
+        if(string.IsNullOrEmpty(userName.text))//유저네임이 비어있다면
+        {
+            userName.text="Uses" + UnityEngine.Random.Range(100,999);
+        }
+        PhotonNetwork.LocalPlayer.NickName=userName.text;
         PhotonNetwork.CreateRoom(createRoom.text,roomOptions,TypedLobby.Default,null);//take above room options
     }
     public void OnClick_JoinBtn()
     {
+        if(string.IsNullOrEmpty(userName.text))//유저네임이 비어있다면
+        {
+            userName.text="Uses" + UnityEngine.Random.Range(100,999);
+        }
+        PhotonNetwork.LocalPlayer.NickName=userName.text;
         PhotonNetwork.JoinRoom(joinRoom.text,null);
     }
     public void OnClick_PlayNow()

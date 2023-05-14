@@ -12,7 +12,6 @@ public class GameManager :  MonoBehaviourPunCallbacks
     public static GameManager instance =null;
     // Start is called before the first frame update
     public GameObject player;
-    public Transform playerSpawnPosition;
 
     public GameObject deathScreen;
     public Text totalAlive;
@@ -25,7 +24,11 @@ public class GameManager :  MonoBehaviourPunCallbacks
     void Awake()//First of all, make the player. It makes camera can track the player.
     {
         instance=this;
-        PhotonNetwork.Instantiate(player.name,playerSpawnPosition.position,playerSpawnPosition.rotation);
+        float random_x=Random.Range(-25,25);
+        float random_z=Random.Range(-25,25);
+        Vector3 position=new Vector3(random_x,5,random_z);
+        Quaternion rotation3=new Quaternion(0f,0f,0f,0f);
+        PhotonNetwork.Instantiate(player.name,position,rotation3);//랜덤으로 플레이어가 생성되게
     }
     void Start()
     {
