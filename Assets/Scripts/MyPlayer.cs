@@ -252,7 +252,6 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
             fillImage.fillAmount=playerHealth;
         }
     }
-
     public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
     {
         if(stream.IsWriting)//in the case of my local player...
@@ -294,6 +293,7 @@ public class MyPlayer : MonoBehaviourPun , IPunObservable
     {
         photonView.RPC("HidePlayerMesh",RpcTarget.All);
         GameManager.instance.Spectate();
+        GameManager.instance.photonView.RPC("RemovePlayer",RpcTarget.All,this.gameObject.GetPhotonView().Owner.NickName);
     }
     [PunRPC]
     public void Iwin()

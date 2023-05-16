@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using Photon;
 using Photon.Pun;
+
 
 public class GameManager :  MonoBehaviourPunCallbacks
 {
@@ -67,6 +69,23 @@ public class GameManager :  MonoBehaviourPunCallbacks
                 temp.GetPhotonView().RPC("Iwin",RpcTarget.All);
             }
         }
+    }
+    [PunRPC]
+    public void RemovePlayer(string NickName)
+    {
+        if(!deathScreen.activeSelf)//death Screen이 활성화되어 있을때만 실행해준다
+        {
+            return;
+        }
+        GameObject[] so=GameObject.FindGameObjectsWithTag("PlayerName");
+        foreach(GameObject temp in so)
+        {
+            if(temp.GetComponent<Text>().text==NickName)
+            {
+                temp.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        
     }
     public void ShowWinScreen()
     {
